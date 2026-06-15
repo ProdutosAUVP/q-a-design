@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Autoavaliação de Design</title>
+  
+  <link rel="icon" href="https://raw.githubusercontent.com/ProdutosAUVP/reviewdesign/main/meme_this_is_fine_dog.png" type="image/png">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { satoshi: ['Satoshi', 'sans-serif'] },
+          colors: {
+            paper: { DEFAULT: '#F9F8F6', dark: '#EAE7E0' },
+            ink: { DEFAULT: '#1C1C1C', light: '#595959' },
+            accent: { DEFAULT: '#38805A', light: '#E2E8E4' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Satoshi', sans-serif; }
+
+    /* Background e Texturas */
+    .bg-grid {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(28, 28, 28, 0.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(28, 28, 28, 0.04) 1px, transparent 1px);
+    }
+    html.dark .bg-grid {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .paper-texture {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+    html.dark .paper-texture {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    }
+
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #d4d4d8; }
+    html.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #3f3f46; }
+
+    /* Custom Checkbox Styles */
+    .checklist-item {
+      transition: all 0.2s ease;
+    }
+    .checklist-item.checked {
+      background-color: rgba(56, 128, 90, 0.05);
+      border-color: rgba(56, 128, 90, 0.4);
+    }
+    html.dark .checklist-item.checked {
+      background-color: rgba(56, 128, 90, 0.15);
+      border-color: rgba(56, 128, 90, 0.5);
+    }
+    .checklist-item.checked span.text-content {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+    input[type="checkbox"] {
+      accent-color: #38805A;
+    }
+  </style>
+</head>
+<body class="bg-paper dark:bg-[#121212] text-ink dark:text-[#E0E0E0] transition-colors duration-500 relative overflow-x-hidden selection:bg-accent/20">
+
+  <div class="fixed inset-0 z-[-1] paper-texture bg-grid pointer-events-none"></div>
+
+  <nav class="sticky top-0 z-50 bg-paper/90 dark:bg-[#121212]/90 backdrop-blur-sm border-b border-paper-dark dark:border-white/10 transition-colors duration-500">
+    <div class="max-w-[900px] mx-auto px-4 md:px-6 py-3 flex justify-between items-center gap-2">
+      <div class="flex items-center gap-2 md:gap-3 shrink min-w-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 md:h-6 w-auto text-accent shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+        <div class="flex flex-col min-w-0">
+          <span class="text-[clamp(12px,3.5vw,20px)] md:text-xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-0.5 whitespace-nowrap truncate block">
+            <span class="hidden md:inline">Autoavaliação de</span><span class="md:hidden">Avaliação</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Design.</span>
+          </span>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3 shrink-0">
+        <button onclick="toggleTheme()" class="text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300" aria-label="Alternar Tema">
+          <svg id="icon-sun" class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          <svg id="icon-moon" class="block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="view-intro" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] block">
+    <div class="w-full max-w-[600px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-10 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      
+      <div>
+        <div class="relative">
+          <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
+            Identificação.
+          </h1>
+          <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-3 font-satoshi">
+            Garanta que a sua iniciativa possui qualidade técnica antes do envio. Preencha seus dados para iniciar a autoavaliação.
+          </p>
+        </div>
+
+        <div class="w-full mt-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 relative shadow-sm">
+          <img src="https://media.giphy.com/media/l41lOugbm13m5w0ow/giphy.gif" alt="Design Review" class="w-full h-40 md:h-56 object-cover grayscale-[20%] transition-transform duration-700 hover:scale-105" loading="lazy" />
+        </div>
+
+        <div class="border-b border-paper-dark dark:border-white/10 mb-6 mt-6"></div>
+      </div>
+
+      <div class="flex flex-col gap-6 w-full">
+        <div class="w-full">
+          <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Seu Nome / Squad</label>
+          <input type="text" id="user-name" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="Ex: João (Marketing)">
+        </div>
+
+        <div class="w-full">
+          <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Qual iniciativa será avaliada?</label>
+          <input type="text" id="project-title" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="Ex: Nova tela de checkout, Chatbot IA...">
+        </div>
+
+        <p id="intro-error" class="text-[9px] text-[#E5ACA0] hidden font-bold uppercase tracking-widest w-full">Preencha todos os campos.</p>
+
+        <div class="mt-2 w-full">
+          <button onclick="startForm()" class="w-full justify-center px-8 py-3 bg-ink text-paper dark:bg-white dark:text-[#121212] text-[10px] uppercase tracking-widest font-bold hover:opacity-80 transition-opacity flex items-center gap-2">
+            Iniciar Autoavaliação →
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <main id="view-form" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-center min-h-[calc(100vh-60px)] hidden">
+    <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-paper-dark dark:border-white/10 pb-4 mb-6 gap-4 md:gap-6">
+        <div class="relative w-full md:w-auto">
+          <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2 md:mt-0">
+            Checklist de <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Qualidade.</span>
+          </h1>
+          <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi max-w-sm">
+            Marque os pontos abaixo após garantir que sua iniciativa os atende.
+          </p>
+        </div>
+
+        <div class="w-full md:w-1/3 flex flex-col justify-end block">
+          <div class="flex justify-between items-end mb-2">
+            <span class="text-[9px] uppercase font-bold tracking-widest text-ink-light dark:text-white/50">Progresso</span>
+            <span id="step-counter" class="text-xs font-bold text-ink dark:text-white">01/06</span>
+          </div>
+          <div class="w-full h-[2px] bg-paper-dark dark:bg-white/10 relative overflow-hidden">
+            <div id="progress-bar" class="absolute top-0 left-0 h-[2px] bg-accent transition-all duration-500 ease-out" style="width: 16.66%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch w-full">
+        
+        <div class="md:w-1/3 flex flex-col shrink-0">
+          <div class="w-full aspect-square md:aspect-auto md:h-full bg-paper dark:bg-[#121212] border border-paper-dark dark:border-white/10 p-1.5 shadow-sm relative group overflow-hidden">
+            <img id="question-gif" src="" alt="Animação da etapa" class="w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+          </div>
+        </div>
+
+        <div class="md:w-2/3 flex flex-col justify-start w-full min-w-0">
+          <span id="question-badge" class="inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-3">
+            PASSO_01
+          </span>
+          
+          <h2 id="question-title" class="text-xl md:text-2xl font-medium mb-2 text-ink dark:text-white leading-tight"></h2>
+          <p id="question-intro" class="text-sm mb-5 text-ink-light dark:text-white/70 leading-relaxed"></p>
+
+          <!-- Lista de Verificação Interativa -->
+          <div id="checklist-container" class="flex flex-col gap-3 w-full mb-6">
+            <!-- Checkboxes injetados via JS -->
+          </div>
+
+          <div id="skip-container" class="mb-4 hidden">
+             <button onclick="skipStep()" class="text-[10px] uppercase tracking-widest font-bold text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white underline underline-offset-2 transition-colors">
+               Não utilizo IA nesta iniciativa (Pular)
+             </button>
+          </div>
+
+          <div id="step-comment-container" class="mt-auto block transition-all duration-300 w-full">
+            <textarea id="step-comment" rows="2" class="w-full border border-paper-dark dark:border-white/20 p-3 rounded-[2px] text-xs focus:outline-none focus:border-accent resize-none transition-all bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30 custom-scrollbar" placeholder="Plano de ação ou ressalvas sobre esta etapa (opcional)..."></textarea>
+          </div>
+
+          <div id="text-container" class="mt-auto hidden w-full">
+            <textarea id="feedback-text" rows="5" class="w-full border border-paper-dark dark:border-white/20 p-3 rounded-[2px] text-sm focus:outline-none focus:border-accent resize-none transition-all bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30 custom-scrollbar" placeholder="Resumo, bloqueios encontrados ou pedidos de ajuda para o time de design..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full flex flex-col-reverse md:flex-row justify-between items-center mt-6 pt-4 border-t border-paper-dark dark:border-white/10 gap-4 md:gap-0">
+        <button id="btn-prev" onclick="handlePrev()" class="w-full md:w-auto justify-center md:justify-start text-[10px] uppercase tracking-widest font-bold text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-colors disabled:opacity-0 flex items-center gap-1.5 py-3 md:py-0">
+          ← Anterior
+        </button>
+
+        <div class="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-center md:text-right w-full md:w-auto">
+          <button id="btn-next" onclick="handleNext()" class="w-full md:w-auto justify-center px-6 py-3 md:py-2.5 bg-ink text-paper dark:bg-white dark:text-[#121212] text-[10px] uppercase tracking-widest font-bold hover:opacity-80 transition-opacity disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2">
+            Confirmar e Avançar →
+          </button>
+
+          <button id="btn-submit" onclick="handleSubmit()" class="w-full md:w-auto justify-center hidden px-6 py-3 md:py-2.5 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:bg-opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed items-center gap-2">
+            Finalizar Avaliação
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="view-success" class="max-w-[700px] mx-auto mt-10 md:mt-16 px-4 md:px-6 animate-[fadeIn_0.5s_ease-in-out] hidden text-center w-full">
+    
+    <div class="w-full max-w-[250px] md:max-w-[300px] mx-auto mb-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 shadow-sm">
+      <img src="https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif" alt="Sucesso" class="w-full h-auto object-cover grayscale-[20%]" loading="lazy" />
+    </div>
+
+    <h2 class="text-2xl md:text-3xl font-medium text-ink dark:text-white mb-3 px-2">Autoavaliação Concluída.</h2>
+    <p class="text-sm text-ink-light dark:text-white/70 mb-8 px-4 max-w-lg mx-auto">
+      Parabéns pela autonomia! Você revisou todos os pontos cruciais de UX e UI. Se você não conseguiu marcar todos os requisitos ou precisa de apoio especializado para refinar a entrega, acione o time.
+    </p>
+    
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
+      <button onclick="resetForm()" class="w-full sm:w-auto justify-center px-6 py-3 border border-paper-dark dark:border-white/20 text-ink dark:text-white text-[10px] uppercase tracking-widest font-bold hover:border-ink dark:hover:border-white transition-colors">
+        Voltar ao início
+      </button>
+      
+      <!-- Link placeholder: Você pode substituir o href abaixo pelo link real do seu formulário/ticket de design -->
+      <a href="https://app.clickup.com/36903956/v/fm/13670m-92951" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center px-6 py-3 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
+        Solicitar Auditoria de Design →
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function applySystemTheme() {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+    applySystemTheme();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applySystemTheme);
+
+    const formQuestions = [
+      { 
+        key: 'q1', 
+        shortTitle: "ESTRATÉGIA", 
+        title: "1. Propósito e Alinhamento", 
+        intro: "A intenção é clara e resolve um problema real do usuário?",
+        checklist: [
+          "A dor do usuário que estamos resolvendo é real (não é apenas uma ideia gerada por IA).",
+          "A solução parece fazer parte do ecossistema do nosso produto principal.",
+          "Definimos uma métrica de sucesso clara para saber se essa funcionalidade deu certo."
+        ],
+        gifUrl: "https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" 
+      },
+      { 
+        key: 'q2', 
+        shortTitle: "JORNADA E UX", 
+        title: "2. Jornada e Usabilidade", 
+        intro: "Foco em como o usuário navega e entende o sistema.",
+        checklist: [
+          "O fluxo tem começo, meio e fim claros (o usuário sabe onde está).",
+          "Não há excesso de informação em um único passo (baixa carga cognitiva).",
+          "Em caso de erros, existem mensagens claras ajudando o usuário a se recuperar.",
+          "A linguagem da interface soa humana e segue o tom de voz da marca."
+        ],
+        gifUrl: "https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" 
+      },
+      { 
+        key: 'q3', 
+        shortTitle: "UI E VISUAL", 
+        title: "3. Consistência Visual", 
+        intro: "Garantir que a iniciativa tenha a nossa 'cara'.",
+        checklist: [
+          "Estou utilizando os botões, cores e fontes oficiais do nosso Design System.",
+          "A hierarquia faz sentido: o elemento mais importante da tela é o que chama mais atenção.",
+          "Os espaçamentos estão consistentes e a tela 'respira' (não está amontoada)."
+        ],
+        gifUrl: "https://media.giphy.com/media/26n6WywFabVNCE21W/giphy.gif" 
+      },
+      { 
+        key: 'q4', 
+        shortTitle: "ACESSIBILIDADE", 
+        title: "4. Acessibilidade e Inclusão", 
+        intro: "O produto precisa funcionar para todos.",
+        checklist: [
+          "O contraste de cores é alto o suficiente para quem tem problemas de visão.",
+          "Os botões são grandes e fáceis de clicar na versão mobile (celular).",
+          "É possível navegar pelos fluxos principais usando o teclado (Tab/Enter)."
+        ],
+        gifUrl: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" 
+      },
+      { 
+        key: 'q5', 
+        shortTitle: "ÉTICA E IA", 
+        title: "5. IA e Ética", 
+        intro: "Se o produto utiliza IA gerativa, valide os riscos envolvidos.",
+        checklist: [
+          "O usuário sabe, de forma transparente, que aquele output veio de uma IA.",
+          "O usuário possui controle e a opção de editar ou rejeitar a ação da IA.",
+          "O risco de resposta errada (alucinação) foi mitigado (ex: com avisos/disclaimers)."
+        ],
+        skippable: true,
+        gifUrl: "https://media.giphy.com/media/IZY2SE2JmPgFG/giphy.gif"
+      },
+      { 
+        key: 'q6', 
+        shortTitle: "CONCLUSÃO", 
+        title: "6. Parecer Final", 
+        intro: "Descreva os bloqueios encontrados ou as melhorias que você fará antes do lançamento. Se precisar do time de design, relate as dificuldades aqui.", 
+        isText: true, 
+        gifUrl: "https://media.giphy.com/media/3oKIPnAiaCRi8INs88/giphy.gif" 
+      }
+    ];
+
+    // Preload Gifs
+    const preloadedGifs = [];
+    formQuestions.forEach(q => {
+      if (q.gifUrl) {
+        const img = new Image();
+        img.src = q.gifUrl;
+        preloadedGifs.push(img);
+      }
+    });
+
+    let currentStep = 0;
+    let formData = { userName: '', projectTitle: '' };
+    
+    // Estado local para armazenar quais checkboxes foram marcados
+    let checkedState = {};
+    formQuestions.forEach((q, i) => {
+        if (q.checklist) {
+            checkedState[i] = new Array(q.checklist.length).fill(false);
+        }
+    });
+    let skippedSteps = {};
+
+    function startForm() {
+      const nameVal = document.getElementById('user-name').value.trim();
+      const projVal = document.getElementById('project-title').value.trim();
+      const errorMsg = document.getElementById('intro-error');
+
+      if (!nameVal || !projVal) {
+        errorMsg.classList.remove('hidden');
+        return;
+      }
+      errorMsg.classList.add('hidden');
+      
+      formData.userName = nameVal;
+      formData.projectTitle = projVal;
+
+      currentStep = 0;
+      switchView('form');
+      renderStep();
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    function switchView(view) {
+      const views = ['view-intro', 'view-form', 'view-success'];
+      views.forEach(v => {
+        const el = document.getElementById(v);
+        if (el) el.classList.add('hidden');
+      });
+      const targetView = document.getElementById(`view-${view}`);
+      if (targetView) targetView.classList.remove('hidden');
+    }
+
+    function renderStep() {
+      const q = formQuestions[currentStep];
+      if (!q) return;
+      
+      const stepNum = String(currentStep + 1).padStart(2, '0');
+      const totalSteps = String(formQuestions.length).padStart(2, '0');
+
+      document.getElementById('step-counter').innerText = `${stepNum}/${totalSteps}`;
+      document.getElementById('progress-bar').style.width = `${((currentStep + 1) / formQuestions.length) * 100}%`;
+      
+      const badge = document.getElementById('question-badge');
+      if (q.skippable) {
+        badge.innerText = `PASSO_${stepNum} • ${q.shortTitle} (CONTEXTUAL)`;
+        badge.className = "inline-block py-0.5 px-2 border border-blue-500/30 text-[9px] font-bold tracking-widest bg-blue-500/10 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 uppercase w-max mb-3";
+      } else {
+        badge.innerText = `PASSO_${stepNum} • ${q.shortTitle}`;
+        badge.className = "inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-3";
+      }
+
+      document.getElementById('question-title').innerText = q.title;
+      document.getElementById('question-intro').innerHTML = q.intro;
+      
+      const qGif = document.getElementById('question-gif');
+      if (qGif.getAttribute('src') !== q.gifUrl) {
+          qGif.setAttribute('src', q.gifUrl);
+      }
+
+      const checklistContainer = document.getElementById('checklist-container');
+      const textContainer = document.getElementById('text-container');
+      const stepCommentContainer = document.getElementById('step-comment-container');
+      const skipContainer = document.getElementById('skip-container');
+
+      if (q.isText) {
+        checklistContainer.classList.add('hidden');
+        stepCommentContainer.classList.add('hidden');
+        skipContainer.classList.add('hidden');
+        textContainer.classList.remove('hidden');
+        document.getElementById('feedback-text').value = formData[q.key] || '';
+      } else {
+        textContainer.classList.add('hidden');
+        checklistContainer.classList.remove('hidden');
+        stepCommentContainer.classList.remove('hidden');
+        
+        if (q.skippable) skipContainer.classList.remove('hidden');
+        else skipContainer.classList.add('hidden');
+
+        document.getElementById('step-comment').value = formData[`${q.key}_comment`] || '';
+        
+        // Renderiza as opções de checklist
+        let html = '';
+        const isSkipped = skippedSteps[currentStep];
+        
+        q.checklist.forEach((item, index) => {
+            const isChecked = checkedState[currentStep][index] || isSkipped;
+            const checkedClass = isChecked ? 'checked' : '';
+            
+            html += `
+            <label class="checklist-item ${checkedClass} flex items-start gap-3 p-3 border border-paper-dark dark:border-white/20 rounded-[2px] cursor-pointer hover:bg-paper-dark/30 dark:hover:bg-white/5 transition-colors w-full">
+                <input type="checkbox" ${isChecked ? 'checked' : ''} ${isSkipped ? 'disabled' : ''} class="mt-0.5 w-4 h-4 shrink-0 cursor-pointer disabled:opacity-50" onchange="toggleCheck(event, ${index})">
+                <span class="text-content text-xs md:text-sm text-ink dark:text-white/90 leading-tight select-none pt-px">${item}</span>
+            </label>
+            `;
+        });
+        checklistContainer.innerHTML = html;
+      }
+
+      updateNavButtons();
+    }
+
+    function toggleCheck(event, itemIndex) {
+        checkedState[currentStep][itemIndex] = event.target.checked;
+        renderStep(); // Re-renderiza para atualizar as classes CSS visuais
+    }
+
+    function skipStep() {
+        skippedSteps[currentStep] = !skippedSteps[currentStep];
+        // Se desmarcou o skip, limpa os checks também para garantir estado fresco
+        if (!skippedSteps[currentStep]) {
+            checkedState[currentStep].fill(false);
+        }
+        renderStep();
+    }
+
+    function updateNavButtons() {
+      const q = formQuestions[currentStep];
+      if (!q) return;
+
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+      const btnSubmit = document.getElementById('btn-submit');
+
+      // Regra de Validação: Permitir avanço se for texto, se foi pulado (IA), ou se checou TODAS as caixas.
+      let isValid = false;
+      if (q.isText) {
+          isValid = true;
+      } else if (skippedSteps[currentStep]) {
+          isValid = true;
+      } else {
+          // Verifica se todos os itens daquele passo estão true
+          isValid = checkedState[currentStep].every(val => val === true);
+      }
+
+      btnPrev.disabled = currentStep === 0;
+
+      if (currentStep < formQuestions.length - 1) {
+        btnNext.classList.remove('hidden');
+        btnNext.classList.add('flex');
+        btnNext.disabled = !isValid;
+        btnSubmit.classList.add('hidden');
+        btnSubmit.classList.remove('flex');
+      } else {
+        btnNext.classList.add('hidden');
+        btnNext.classList.remove('flex');
+        btnSubmit.classList.remove('hidden');
+        btnSubmit.classList.add('flex');
+        btnSubmit.disabled = false; // Passo final sempre pode enviar
+      }
+    }
+
+    function handleNext() {
+      if (currentStep < formQuestions.length - 1) {
+        currentStep++;
+        renderStep();
+      }
+    }
+
+    function handlePrev() {
+      if (currentStep > 0) {
+        currentStep--;
+        renderStep();
+      }
+    }
+
+    function handleSubmit() {
+      const btnSubmit = document.getElementById('btn-submit');
+      btnSubmit.innerHTML = 'Concluindo...';
+      btnSubmit.disabled = true;
+
+      // Neste ponto, os dados poderiam ser enviados para o backend ou registrados
+      // console.log("Final Report:", formData, checkedState, skippedSteps);
+
+      setTimeout(() => {
+        switchView('success');
+        btnSubmit.innerHTML = `Finalizar Avaliação`;
+        btnSubmit.disabled = false;
+      }, 800);
+    }
+
+    function resetForm() {
+      currentStep = 0;
+      formData = { userName: '', projectTitle: '' };
+      skippedSteps = {};
+      
+      formQuestions.forEach((q, i) => {
+          if (q.checklist) {
+              checkedState[i] = new Array(q.checklist.length).fill(false);
+          }
+      });
+      
+      document.getElementById('user-name').value = '';
+      document.getElementById('project-title').value = '';
+      
+      switchView('intro');
+    }
+
+    // Bind events para salvar texto
+    window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('feedback-text').addEventListener('input', (e) => {
+            const q = formQuestions[currentStep];
+            if (q) formData[q.key] = e.target.value;
+        });
+
+        document.getElementById('step-comment').addEventListener('input', (e) => {
+            const q = formQuestions[currentStep];
+            if (q && !q.isText) formData[`${q.key}_comment`] = e.target.value;
+        });
+
+        switchView('intro');
+    });
+
+  </script>
+</body>
+</html>
