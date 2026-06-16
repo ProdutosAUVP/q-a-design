@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Autoavaliação de Design</title>
   
-  <link rel="icon" href="https://raw.githubusercontent.com/ProdutosAUVP/reviewdesign/main/meme_this_is_fine_dog.png" type="image/png">
+  <link class="js-favicon" rel="icon" href="https://raw.githubusercontent.com/ProdutosAUVP/reviewdesign/main/meme_this_is_fine_dog.png" type="image/png">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -29,6 +29,12 @@
 
   <style>
     body { font-family: 'Satoshi', sans-serif; }
+
+    /* Keyframes para as animações funcionarem com o Tailwind JIT */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* Background e Texturas */
     .bg-grid {
@@ -85,6 +91,7 @@
     </div>
   </nav>
 
+  <!-- VIEW INTRO -->
   <main id="view-intro" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] block">
     <div class="w-full max-w-[600px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-10 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
       
@@ -99,7 +106,7 @@
         </div>
 
         <div class="w-full mt-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 relative shadow-sm">
-          <img src="https://media.giphy.com/media/l41lOugbm13m5w0ow/giphy.gif" alt="Design Review" class="w-full h-40 md:h-56 object-cover grayscale-[20%] transition-transform duration-700 hover:scale-105" loading="lazy" />
+          <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZHRobHI1bWZxNHgxZzJyNm10bHY4aTQ0Z2w0cmV5bm95bjVjdmJqdyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xlA198GxRZLw1YJugx/giphy.gif" alt="Design Review" class="w-full h-40 md:h-56 object-cover grayscale-[20%] transition-transform duration-700 hover:scale-105" loading="lazy" />
         </div>
 
         <div class="border-b border-paper-dark dark:border-white/10 mb-6 mt-6"></div>
@@ -127,6 +134,7 @@
     </div>
   </main>
 
+  <!-- VIEW FORM -->
   <main id="view-form" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-center min-h-[calc(100vh-60px)] hidden">
     <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
       
@@ -202,15 +210,16 @@
     </div>
   </main>
 
+  <!-- VIEW SUCCESS -->
   <div id="view-success" class="max-w-[700px] mx-auto mt-10 md:mt-16 px-4 md:px-6 animate-[fadeIn_0.5s_ease-in-out] hidden text-center w-full">
     
     <div class="w-full max-w-[250px] md:max-w-[300px] mx-auto mb-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 shadow-sm">
-      <img src="https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif" alt="Sucesso" class="w-full h-auto object-cover grayscale-[20%]" loading="lazy" />
+      <img id="result-gif" src="https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif" alt="Resultado" class="w-full h-auto object-cover grayscale-[20%]" loading="lazy" />
     </div>
 
-    <h2 class="text-2xl md:text-3xl font-medium text-ink dark:text-white mb-3 px-2">Autoavaliação Concluída.</h2>
-    <p class="text-sm text-ink-light dark:text-white/70 mb-8 px-4 max-w-lg mx-auto">
-      Parabéns pela autonomia! Você revisou todos os pontos cruciais de UX e UI. Suas respostas e dúvidas já foram enviadas para o painel de Design.
+    <h2 id="result-title" class="text-2xl md:text-3xl font-medium text-ink dark:text-white mb-3 px-2">Autoavaliação Concluída.</h2>
+    <p id="result-desc" class="text-sm text-ink-light dark:text-white/70 mb-8 px-4 max-w-lg mx-auto">
+      Calculando seu resultado...
     </p>
     
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
@@ -218,64 +227,81 @@
         Voltar ao início
       </button>
       
+      <!-- Link placeholder: Você pode substituir o href abaixo pelo link real do seu formulário/ticket de design -->
       <a href="https://app.clickup.com/36903956/v/fm/13670m-92951" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center px-6 py-3 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
-        Solicitar Ajuda do Design →
+        Solicitar Auditoria de Design →
       </a>
     </div>
   </div>
 
-  <main id="view-auth" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-center min-h-[calc(100vh-60px)] hidden">
-    <div class="w-full max-w-[400px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
-      <div class="mb-6 border-b border-paper-dark dark:border-white/10 pb-4">
-        <h2 class="text-2xl font-medium text-ink dark:text-white mb-2">Painel Admin</h2>
-        <p class="text-xs text-ink-light dark:text-white/60 font-satoshi">Registro das análises realizadas (Senha padrão: admin).</p>
+  <!-- VIEW AUTH -->
+  <main id="view-auth" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] hidden">
+    <div class="w-full max-w-[500px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-10 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      <div class="relative">
+        <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
+          Acesso Restrito.
+        </h1>
+        <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-3 font-satoshi">
+          Insira a senha de administrador (admin).
+        </p>
       </div>
-      
-      <input type="password" id="admin-password" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="••••••••">
-      <p id="auth-error" class="text-[9px] text-[#E5ACA0] mt-2 hidden font-bold uppercase tracking-widest">Senha incorreta.</p>
-      
-      <button onclick="checkPassword()" class="w-full mt-6 py-3 bg-ink text-paper dark:bg-white dark:text-[#121212] text-[10px] uppercase tracking-widest font-bold hover:opacity-80 transition-opacity">Acessar Registros</button>
+
+      <div class="w-full mt-6">
+        <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Senha</label>
+        <input type="password" id="admin-password" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="••••••••">
+      </div>
+      <p id="auth-error" class="text-[9px] text-[#E5ACA0] hidden font-bold uppercase tracking-widest w-full mt-2">Senha incorreta.</p>
+
+      <div class="mt-6 w-full">
+        <button onclick="checkPassword()" class="w-full justify-center px-8 py-3 bg-ink text-paper dark:bg-white dark:text-[#121212] text-[10px] uppercase tracking-widest font-bold hover:opacity-80 transition-opacity flex items-center gap-2">
+          Entrar →
+        </button>
+      </div>
     </div>
   </main>
 
-  <div id="view-dashboard" class="max-w-[900px] w-full mx-auto px-4 md:px-6 py-8 md:py-12 animate-[fadeIn_0.5s_ease-in-out] hidden">
-    <div class="mb-8 md:mb-10 border-b border-paper-dark dark:border-white/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 w-full">
-      <div class="relative w-full md:w-auto">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-ink dark:text-white uppercase leading-[0.9] font-satoshi break-words">
-          Registros de <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Análise.</span>
-        </h1>
-      </div>
-      <div class="text-left md:text-right shrink-0">
-        <p class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-1">Total de Auditorias</p>
-        <div class="flex items-baseline justify-start md:justify-end gap-1">
-          <h2 id="kpi-total" class="text-3xl md:text-4xl text-accent leading-none font-medium">0</h2>
+  <!-- VIEW DASHBOARD -->
+  <main id="view-dashboard" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] hidden">
+    <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      <div class="border-b border-paper-dark dark:border-white/10 pb-4 mb-6 flex justify-between items-end">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
+            Painel Admin.
+          </h1>
+          <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi">
+            Visualização das autoavaliações registradas.
+          </p>
         </div>
       </div>
-    </div>
-
-    <div class="md:col-span-12 bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 p-4 md:p-8 w-full shadow-sm">
-      <h3 class="text-xs font-bold uppercase tracking-widest text-ink dark:text-white mb-4 md:mb-6 border-b border-paper-dark dark:border-white/10 pb-3">Histórico de Submissões</h3>
-      <div id="history-list" class="flex flex-col gap-3 custom-scrollbar max-h-[500px] overflow-y-auto pr-1 md:pr-2 w-full">
-        <!-- Histórico injetado via JS -->
+      
+      <div id="dashboard-content" class="flex flex-col gap-4 w-full">
+        <!-- Renderizado dinamicamente via JS -->
       </div>
     </div>
-  </div>
+  </main>
 
-  <div id="evaluation-modal" class="fixed inset-0 z-[100] bg-ink/60 dark:bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 md:p-6 opacity-0 transition-opacity duration-300 w-full">
-    <div class="bg-paper dark:bg-[#121212] border border-paper-dark dark:border-white/10 w-full max-w-[700px] max-h-[95vh] md:max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl flex flex-col relative transform scale-95 transition-transform duration-300 rounded-[4px]">
-      
-      <div class="sticky top-0 bg-paper dark:bg-[#121212] border-b border-paper-dark dark:border-white/10 p-4 md:p-5 flex justify-between items-center z-10 w-full">
-        <h3 class="text-xs md:text-sm font-bold uppercase tracking-widest text-ink dark:text-white truncate pr-4 min-w-0" id="modal-title">Detalhes da Avaliação</h3>
-        <button onclick="closeModal()" class="text-ink-light hover:text-accent dark:text-white/50 dark:hover:text-white p-2 md:p-1 transition-colors shrink-0 bg-paper-dark/30 dark:bg-white/5 rounded-[4px] md:bg-transparent">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  <!-- VIEW DETAILS (Nova Tela) -->
+  <main id="view-details" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] hidden">
+    <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      <div class="border-b border-paper-dark dark:border-white/10 pb-4 mb-6 flex justify-between items-start md:items-end flex-col md:flex-row gap-4">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
+            Respostas.
+          </h1>
+          <p id="details-subtitle" class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi">
+            Nome • Projeto
+          </p>
+        </div>
+        <button onclick="switchView('dashboard')" class="text-[10px] uppercase tracking-widest font-bold text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-colors flex items-center gap-1.5 shrink-0">
+          ← Voltar ao Painel
         </button>
       </div>
       
-      <div id="modal-content" class="p-4 md:p-6 flex flex-col gap-4 md:gap-6 w-full">
-          <!-- Injetado via JS -->
+      <div id="details-content" class="flex flex-col gap-6 w-full">
+        <!-- Renderizado dinamicamente via JS -->
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     function applySystemTheme() {
@@ -299,7 +325,7 @@
           "A solução parece fazer parte do ecossistema do nosso produto principal.",
           "Definimos uma métrica de sucesso clara para saber se essa funcionalidade deu certo."
         ],
-        gifUrl: "https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy.gif" 
+        gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHd0ZjB1OGRoeHhhcTB1eHN3Znl6enZwb2VqNXY2YXh1Zmhiem4yMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/JSWu7FReUWYvVbOfEs/giphy.gif" 
       },
       { 
         key: 'q2', 
@@ -312,7 +338,7 @@
           "Em caso de erros, existem mensagens claras ajudando o usuário a se recuperar.",
           "A linguagem da interface soa humana e segue o tom de voz da marca."
         ],
-        gifUrl: "https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" 
+        gifUrl: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjhxN3RzMGttNHJrYWw0aXMycDlqbWkwbTR2ZGp6OXhoamtycGlxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EFXGvbDPhLoWs/giphy.gif"
       },
       { 
         key: 'q3', 
@@ -324,7 +350,7 @@
           "A hierarquia faz sentido: o elemento mais importante da tela é o que chama mais atenção.",
           "Os espaçamentos estão consistentes e a tela 'respira' (não está amontoada)."
         ],
-        gifUrl: "https://media.giphy.com/media/26n6WywFabVNCE21W/giphy.gif" 
+        gifUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3pvZGl2NWY5MWY1dWd5YTF0MHIzazc5YmV6d2hkc2J3eTk2cnFnOSZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/Op7aGAs8TO0ogyV0nJ/giphy.gif" 
       },
       { 
         key: 'q4', 
@@ -333,7 +359,7 @@
         intro: "O produto precisa funcionar e estar alinhado para todos.",
         checklist: [
           "O que foi feito está de acordo com as cores do nosso <a href='https://produtosauvp.github.io/central/design-system' target='_blank' class='text-accent underline font-bold'>Design System</a>.",
-          "Os botões são grandes e fáceis de clicar na versão mobile (celular).",
+          "Os botões são grandes e fáceis de clicar na versão mobile (celular), assim como o tamanho da fonte também está legível.",
           "É possível navegar pelos fluxos principais usando o teclado (Tab/Enter)."
         ],
         gifUrl: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" 
@@ -356,7 +382,7 @@
         title: "6. Parecer Final", 
         intro: "Descreva de forma geral o que achou da implementação. Aproveite para documentar necessidades de melhoria ou chamar a atenção dos designers.", 
         isText: true, 
-        gifUrl: "https://media.giphy.com/media/3oKIPnAiaCRi8INs88/giphy.gif" 
+        gifUrl: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWs5c3J2NmJiZTVzanoyNTB0ejJ2ODRxM2xmanIzaWRtOTI0OWo5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yDcoZeiOTeLg7AD61G/giphy.gif" 
       }
     ];
 
@@ -371,8 +397,8 @@
 
     let currentStep = 0;
     let formData = { userName: '', projectTitle: '' };
+    let skippedSteps = {};
     
-    // Estado local para armazenar os cliques (null = não respondido, 'sim', 'nao', 'na')
     let checkedState = {};
     formQuestions.forEach((q, i) => {
         if (q.checklist) {
@@ -380,13 +406,14 @@
         }
     });
 
-    // Base de dados local simulada
     let submissions = [
       {
         id: 1,
         date: new Date(Date.now() - 86400000).toISOString(),
         userName: 'Maria (Produto)',
         projectTitle: 'Nova tela de Checkout',
+        result: 'Reprovado',
+        percentage: 60,
         checks: {
           q1: ['sim', 'sim', 'sim'],
           q2: ['sim', 'nao', 'sim', 'sim'],
@@ -458,7 +485,7 @@
     }
 
     function switchView(view) {
-      const views = ['view-intro', 'view-form', 'view-success', 'view-auth', 'view-dashboard'];
+      const views = ['view-intro', 'view-form', 'view-success', 'view-auth', 'view-dashboard', 'view-details'];
       views.forEach(v => {
         const el = document.getElementById(v);
         if (el) el.classList.add('hidden');
@@ -476,11 +503,100 @@
       if (view === 'form' || view === 'intro' || view === 'success') {
         if (btnForm) btnForm.className = activeClass;
         if (btnDash) btnDash.className = inactiveClass;
-      } else if (view === 'dashboard' || view === 'auth') {
+      } else if (view === 'dashboard' || view === 'auth' || view === 'details') {
         if (btnDash) btnDash.className = activeClass;
         if (btnForm) btnForm.className = inactiveClass;
         if (view === 'dashboard') renderDashboard();
       }
+    }
+
+    // Função que mostra a lista do painel
+    function renderDashboard() {
+      const container = document.getElementById('dashboard-content');
+      if (!container) return;
+      
+      if (submissions.length === 0) {
+        container.innerHTML = '<p class="text-sm text-ink-light dark:text-white/50">Nenhuma avaliação encontrada.</p>';
+        return;
+      }
+
+      let html = '';
+      submissions.forEach(sub => {
+        let badgeColor = "bg-ink border-ink text-paper dark:bg-white dark:border-white dark:text-ink";
+        if (sub.result === 'Aprovado') badgeColor = "bg-[#38805A]/10 border-[#38805A]/30 text-[#38805A] dark:text-[#50B27E]";
+        if (sub.result === 'Pendências') badgeColor = "bg-[#Eab308]/10 border-[#Eab308]/30 text-[#B45309] dark:text-[#FDE047]";
+        if (sub.result === 'Reprovado') badgeColor = "bg-[#D96C53]/10 border-[#D96C53]/30 text-[#D96C53] dark:text-[#E5ACA0]";
+
+        html += `
+        <div class="p-5 border border-paper-dark dark:border-white/10 rounded-[4px] bg-paper-dark/30 dark:bg-white/5 flex flex-col md:flex-row justify-between md:items-center gap-4 transition-colors hover:border-paper-dark/80 dark:hover:border-white/20">
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1">
+              <span class="text-sm font-bold text-ink dark:text-white">${sub.userName}</span>
+              <span class="text-[9px] uppercase font-bold tracking-widest text-ink-light dark:text-white/50 bg-paper dark:bg-[#121212] px-2 py-0.5 border border-paper-dark dark:border-white/10 rounded-sm">${new Date(sub.date).toLocaleDateString()}</span>
+              <span class="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 border rounded-sm ${badgeColor}">${sub.result}</span>
+            </div>
+            <p class="text-xs text-ink-light dark:text-white/70">${sub.projectTitle}</p>
+          </div>
+          <button onclick="showDetails(${sub.id})" class="text-[9px] uppercase tracking-widest font-bold text-accent dark:text-accent-light border border-accent/20 px-4 py-2 hover:bg-accent/10 transition-colors w-max shrink-0">Ver Detalhes</button>
+        </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    // Função Nova para mostrar detalhes da avaliação
+    function showDetails(id) {
+      const sub = submissions.find(s => s.id === id);
+      if (!sub) return;
+      
+      document.getElementById('details-subtitle').innerText = `Enviado por ${sub.userName} • ${sub.projectTitle}`;
+      
+      const container = document.getElementById('details-content');
+      let html = '';
+      
+      formQuestions.forEach((q, i) => {
+        html += `<div class="border border-paper-dark dark:border-white/10 rounded-[4px] p-5 bg-paper dark:bg-[#121212]">`;
+        html += `<h3 class="text-xs font-bold text-ink dark:text-white uppercase tracking-widest mb-4">${q.shortTitle} - ${q.title}</h3>`;
+        
+        if (q.checklist) {
+          const checks = sub.checks[q.key] || [];
+          html += `<div class="flex flex-col gap-1.5 mb-5">`;
+          q.checklist.forEach((item, idx) => {
+            const val = checks[idx];
+            let badge = '<span class="text-[9px] px-2 py-0.5 font-bold tracking-wider rounded-sm border border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50">N/R</span>';
+            if (val === 'sim') badge = '<span class="text-[9px] px-2 py-0.5 font-bold tracking-wider rounded-sm bg-[#38805A]/10 text-[#38805A] border border-[#38805A]/20">SIM</span>';
+            if (val === 'nao') badge = '<span class="text-[9px] px-2 py-0.5 font-bold tracking-wider rounded-sm bg-danger/10 text-danger border border-danger/20">NÃO</span>';
+            if (val === 'na') badge = '<span class="text-[9px] px-2 py-0.5 font-bold tracking-wider rounded-sm bg-ink/10 text-ink dark:bg-white/10 dark:text-white border border-ink/20 dark:border-white/20">N/A</span>';
+            
+            html += `
+            <div class="flex items-start gap-3 py-1">
+              <div class="flex items-center justify-center shrink-0 min-w-[42px] h-5">
+                ${badge}
+              </div>
+              <span class="text-xs text-ink-light dark:text-white/80 leading-5">${item}</span>
+            </div>`;
+          });
+          html += `</div>`;
+        }
+        
+        const comment = sub.comments[q.key];
+        if (comment) {
+          html += `<div class="border-t border-paper-dark dark:border-white/10 pt-4">
+                     <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 block mb-2">${q.isText ? 'Parecer Final' : 'Comentário / Dúvida'}</span>
+                     <p class="text-sm text-ink dark:text-white/90 whitespace-pre-wrap">${comment}</p>
+                   </div>`;
+        } else if (q.isText) {
+          html += `<div class="border-t border-paper-dark dark:border-white/10 pt-4">
+                     <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 block mb-2">Parecer Final</span>
+                     <p class="text-sm text-ink-light/50 dark:text-white/30 italic">Nenhum comentário adicionado.</p>
+                   </div>`;
+        }
+        
+        html += `</div>`;
+      });
+      
+      container.innerHTML = html;
+      switchView('details');
     }
 
     function renderStep() {
@@ -505,6 +621,9 @@
           qGif.setAttribute('src', q.gifUrl);
       }
 
+      // Aplica a classe de alinhamento customizada ou centraliza por padrão
+      qGif.className = `w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105 ${q.imgClass || 'object-center'}`;
+
       const checklistContainer = document.getElementById('checklist-container');
       const textContainer = document.getElementById('text-container');
       const stepCommentContainer = document.getElementById('step-comment-container');
@@ -521,18 +640,15 @@
         
         document.getElementById('step-comment').value = formData[`${q.key}_comment`] || '';
         
-        // Renderiza as opções com botões Sim, Não, N/A
         let html = '';
         
         q.checklist.forEach((item, index) => {
             const val = checkedState[currentStep][index];
             
-            // Classes dinâmicas para os botões baseados no estado
             const btnSimClass = val === 'sim' ? 'bg-[#38805A] text-white border-[#38805A]' : 'border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50 hover:border-[#38805A] hover:text-[#38805A]';
             const btnNaoClass = val === 'nao' ? 'bg-danger text-white border-danger' : 'border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50 hover:border-danger hover:text-danger';
             const btnNaClass = val === 'na' ? 'bg-ink text-paper dark:bg-white dark:text-ink border-ink dark:border-white' : 'border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50 hover:border-ink dark:hover:border-white hover:text-ink dark:hover:text-white';
             
-            // Container recebe cor de fundo se respondido
             const containerClass = val !== null ? 'bg-paper-dark/20 dark:bg-white-[0.02]' : '';
 
             html += `
@@ -552,8 +668,16 @@
       updateNavButtons();
     }
 
-    function setCheck(itemIndex, value) {
-        checkedState[currentStep][itemIndex] = value;
+    function setCheck(index, value) {
+        checkedState[currentStep][index] = value;
+        renderStep();
+    }
+
+    function skipStep() {
+        skippedSteps[currentStep] = !skippedSteps[currentStep];
+        if (!skippedSteps[currentStep]) {
+            checkedState[currentStep].fill(null);
+        }
         renderStep();
     }
 
@@ -565,13 +689,7 @@
       const btnNext = document.getElementById('btn-next');
       const btnSubmit = document.getElementById('btn-submit');
 
-      let isValid = false;
-      if (q.isText) {
-          isValid = true;
-      } else {
-          // Só permite avançar se todas as perguntas da etapa foram respondidas
-          isValid = checkedState[currentStep].every(val => val !== null);
-      }
+      let isValid = true;
 
       btnPrev.disabled = currentStep === 0;
 
@@ -604,197 +722,91 @@
       }
     }
 
-    function renderDashboard() {
-      const kpiTotal = document.getElementById('kpi-total');
-      const historyList = document.getElementById('history-list');
-
-      if (kpiTotal) kpiTotal.innerText = submissions.length;
-
-      if (historyList) {
-        if (submissions.length === 0) {
-          historyList.innerHTML = '<p class="text-xs text-ink-light dark:text-white/50 py-4">Nenhum registro encontrado.</p>';
-          return;
-        }
-
-        historyList.innerHTML = submissions.map(s => {
-          const dateObj = new Date(s.date);
-          const formattedDate = dateObj.toLocaleDateString('pt-BR') + ' às ' + dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-          
-          return `
-          <div onclick="openModal(${s.id})" class="p-4 border border-paper-dark dark:border-white/10 bg-paper dark:bg-[#121212] hover:border-accent dark:hover:border-accent cursor-pointer transition-colors flex flex-col gap-3 group w-full rounded-[4px]">
-            <div class="flex flex-col md:flex-row justify-between md:items-start gap-3 md:gap-4 w-full">
-              <div class="flex flex-col gap-1 min-w-0 flex-1 w-full">
-                <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block truncate w-full">
-                  ${formattedDate} • ${s.userName}
-                </span>
-                <span class="text-[13px] md:text-sm font-bold text-ink dark:text-white break-words w-full block line-clamp-2">
-                  ${s.projectTitle}
-                </span>
-              </div>
-              <div class="flex items-center gap-4 shrink-0 mt-2 md:mt-0">
-                <div class="flex flex-col items-start md:items-end">
-                  <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40">Relatório</span>
-                  <span class="text-xs md:text-sm font-bold text-accent uppercase tracking-widest">Acessar</span>
-                </div>
-                <div class="w-8 h-8 rounded-full flex items-center justify-center bg-paper-dark/30 dark:bg-white/5 text-ink-light dark:text-white/50 group-hover:bg-accent group-hover:text-white transition-colors shrink-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-          `;
-        }).join('');
-      }
-    }
-
-    function openModal(id) {
-      const submission = submissions.find(s => s.id === id);
-      if (!submission) return;
-
-      const modal = document.getElementById('evaluation-modal');
-      const modalContent = document.getElementById('modal-content');
-      const modalTitle = document.getElementById('modal-title');
-
-      modalTitle.innerText = `${submission.projectTitle}`;
-
-      const dateObj = new Date(submission.date);
-      const formattedDate = dateObj.toLocaleDateString('pt-BR') + ' às ' + dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-
-      let sectionsHtml = '';
-      
-      formQuestions.forEach((q, stepIndex) => {
-        if (q.isText) {
-          if (submission.comments[q.key]) {
-            sectionsHtml += `
-            <div class="mt-2 pt-4 border-t border-paper-dark dark:border-white/10 w-full">
-              <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 block mb-2">${q.title}</span>
-              <div class="bg-paper dark:bg-[#1A1A1A] p-3 md:p-4 border border-paper-dark dark:border-white/10 w-full rounded-[2px]">
-                <p class="text-[11px] md:text-sm text-ink dark:text-white/90 leading-relaxed italic whitespace-pre-wrap break-words w-full">"${submission.comments[q.key]}"</p>
-              </div>
-            </div>
-            `;
-          }
-          return;
-        }
-
-        const checks = submission.checks ? submission.checks[q.key] : null;
-        const comment = submission.comments[q.key];
-
-        let checklistHtml = '';
-        if (checks && q.checklist) {
-           checklistHtml = '<div class="flex flex-col gap-2 mt-3">';
-           q.checklist.forEach((item, idx) => {
-              const answer = checks[idx];
-              let badgeClass = 'bg-ink/10 text-ink dark:bg-white/10 dark:text-white/70 border border-ink/20 dark:border-white/20'; 
-              let answerText = 'Não resp.';
-
-              if (answer === 'sim') {
-                  badgeClass = 'bg-[#38805A]/10 text-[#38805A] border border-[#38805A]/30';
-                  answerText = 'Sim';
-              } else if (answer === 'nao') {
-                  badgeClass = 'bg-danger/10 text-danger border border-danger/30';
-                  answerText = 'Não';
-              } else if (answer === 'na') {
-                  badgeClass = 'bg-ink/10 text-ink dark:bg-white/10 dark:text-white/70 border border-ink/20 dark:border-white/20';
-                  answerText = 'N/A';
-              }
-
-              checklistHtml += `
-                <div class="flex items-start justify-between gap-3 p-2.5 border border-paper-dark dark:border-white/10 rounded-[2px] bg-paper-dark/10 dark:bg-white-[0.02]">
-                  <span class="text-[11px] md:text-xs text-ink dark:text-white/80 leading-tight flex-1" dangerouslySetInnerHTML>${item}</span>
-                  <span class="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-[2px] ${badgeClass} shrink-0">${answerText}</span>
-                </div>
-              `;
-           });
-           checklistHtml += '</div>';
-        }
-
-        let commentHtml = '';
-        if (comment) {
-            commentHtml = `
-            <div class="mt-3 bg-paper-dark/30 dark:bg-white/5 p-3 border-l-2 border-accent w-full rounded-r-[2px]">
-              <span class="text-[9px] uppercase tracking-widest font-bold text-accent dark:text-[#72A68C] block mb-1">Dúvida / Plano de Ação:</span>
-              <p class="text-[11px] md:text-xs text-ink dark:text-white/90 italic whitespace-pre-wrap break-words">"${comment}"</p>
-            </div>
-            `;
-        }
-
-        sectionsHtml += `
-        <div class="flex flex-col gap-1 pb-5 border-b border-paper-dark dark:border-white/5 last:border-0 w-full mt-2">
-          <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold text-ink dark:text-white break-words whitespace-normal w-full">${q.title}</span>
-          ${checklistHtml}
-          ${commentHtml}
-        </div>
-        `;
-      });
-
-      modalContent.innerHTML = `
-        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-2 bg-paper-dark/30 dark:bg-white/5 p-4 rounded-[4px] w-full">
-          <div class="min-w-0">
-            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Nome / Squad</span>
-            <span class="text-xs md:text-sm font-medium text-ink dark:text-white truncate block">${submission.userName}</span>
-          </div>
-          <div class="min-w-0">
-            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Data e Hora</span>
-            <span class="text-xs md:text-sm font-medium text-ink dark:text-white truncate block">${formattedDate}</span>
-          </div>
-        </div>
-
-        <div class="flex flex-col gap-2 mt-2 md:mt-4 w-full">
-          ${sectionsHtml}
-        </div>
-      `;
-
-      modal.classList.remove('hidden');
-      setTimeout(() => {
-        modal.classList.remove('opacity-0');
-        modal.firstElementChild.classList.remove('scale-95');
-      }, 10);
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('evaluation-modal');
-      modal.classList.add('opacity-0');
-      modal.firstElementChild.classList.add('scale-95');
-      setTimeout(() => {
-        modal.classList.add('hidden');
-      }, 300);
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById('evaluation-modal');
-      if (event.target == modal) {
-        closeModal();
-      }
-    }
-
+    // Salvar Dados e exibir resultado final com diferenciação lógica
     function handleSubmit() {
       const btnSubmit = document.getElementById('btn-submit');
       btnSubmit.innerHTML = 'Concluindo...';
       btnSubmit.disabled = true;
 
-      // Salvando os checks junto da submissão 
-      const currentChecks = {};
+      let totalQuestions = 0;
+      let totalYes = 0;
+      let totalNA = 0;
+      let totalItems = 0;
+
       formQuestions.forEach((q, i) => {
-         if(q.checklist) currentChecks[q.key] = checkedState[i];
+          if (q.checklist && !skippedSteps[i]) {
+              checkedState[i].forEach(val => {
+                  totalItems++;
+                  if (val === 'sim') {
+                      totalYes++;
+                      totalQuestions++;
+                  } else if (val === 'nao' || val === null) {
+                      totalQuestions++;
+                  } else if (val === 'na') {
+                      totalNA++;
+                  }
+              });
+          }
       });
 
+      const percentage = totalQuestions === 0 ? 100 : Math.round((totalYes / totalQuestions) * 100);
+      const naPercentage = totalItems === 0 ? 0 : (totalNA / totalItems);
+      const isApproved = percentage >= 80;
+
+      let finalResultStr = '';
+
+      const resultGif = document.getElementById('result-gif');
+      const resultTitle = document.getElementById('result-title');
+      const resultDesc = document.getElementById('result-desc');
+
+      // Se 50% ou mais dos itens forem marcados como N/A -> Projeto com Pendências (escopo/definição indefinida)
+      if (naPercentage >= 0.5) {
+          finalResultStr = 'Pendências';
+          resultGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN0cHJsbjc3Z3d6anV2eGZwYzQzZmQ5c2k3cXU2d3RmZzl4ZWI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRPBhd3vscg5Fxx1DQ/giphy.gif"; 
+          resultTitle.innerText = "Projeto com Pendências.";
+          resultTitle.className = "text-2xl md:text-3xl font-medium text-[#B45309] mb-3 px-2";
+          resultDesc.innerHTML = `Detectamos que metade ou mais dos critérios foram marcados como "N/A". Isso indica que a iniciativa possui pendências de definição ou escopo que precisam ser melhor especificadas antes de seguirmos com uma auditoria oficial de design.`;
+      } 
+      // Se tiver alta conformidade técnica (80% ou mais) -> Projeto Aprovado
+      else if (isApproved) {
+          finalResultStr = 'Aprovado';
+          resultGif.src = "https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif"; 
+          resultTitle.innerText = "Projeto Aprovado!";
+          resultTitle.className = "text-2xl md:text-3xl font-medium text-[#38805A] mb-3 px-2";
+          resultDesc.innerHTML = `Parabéns! A sua iniciativa demonstra um excelente alinhamento com os nossos padrões de qualidade. O projeto está maduro e pronto para seguir em frente.`;
+      } 
+      // Se não atingir o limiar técnico devido a marcações "Não" ou itens em branco -> Projeto Reprovado
+      else {
+          finalResultStr = 'Reprovado';
+          resultGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN0cHJsbjc3Z3d6anV2eGZwYzQzZmQ5c2k3cXU2d3RmZzl4ZWI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRPBhd3vscg5Fxx1DQ/giphy.gif"; 
+          resultTitle.innerText = "Projeto Reprovado.";
+          resultTitle.className = "text-2xl md:text-3xl font-medium text-[#D96C53] mb-3 px-2";
+          resultDesc.innerHTML = `A sua iniciativa não atingiu os requisitos mínimos exigidos de design e/ou usabilidade devidas. Revise seu projeto e os pontos em aberto. Caso haja dúvidas entre em contato com um dos designers.`;
+      }
+
+      // Adicionando a submissão para o Painel Admin
       const newSubmission = {
         id: Date.now(),
         date: new Date().toISOString(),
         userName: formData.userName,
         projectTitle: formData.projectTitle,
-        checks: currentChecks,
-        comments: {
-          q1: formData['q1_comment'] || '',
-          q2: formData['q2_comment'] || '',
-          q3: formData['q3_comment'] || '',
-          q4: formData['q4_comment'] || '',
-          q5: formData['q5_comment'] || '',
-          q6: formData['q6'] || ''
-        }
+        result: finalResultStr,
+        percentage: percentage,
+        checks: {},
+        comments: {}
       };
 
+      formQuestions.forEach((q, i) => {
+        if (q.checklist) {
+          newSubmission.checks[q.key] = [...checkedState[i]];
+        }
+        if (q.isText) {
+          newSubmission.comments[q.key] = formData[q.key] || '';
+        } else {
+          newSubmission.comments[q.key] = formData[`${q.key}_comment`] || '';
+        }
+      });
+      
       submissions.unshift(newSubmission);
 
       setTimeout(() => {
@@ -807,6 +819,7 @@
     function resetForm() {
       currentStep = 0;
       formData = { userName: '', projectTitle: '' };
+      skippedSteps = {};
       
       formQuestions.forEach((q, i) => {
           if (q.checklist) {
