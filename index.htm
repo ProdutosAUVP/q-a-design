@@ -18,7 +18,9 @@
           colors: {
             paper: { DEFAULT: '#F9F8F6', dark: '#EAE7E0' },
             ink: { DEFAULT: '#1C1C1C', light: '#595959' },
-            accent: { DEFAULT: '#38805A', light: '#E2E8E4' }
+            accent: { DEFAULT: '#38805A', light: '#E2E8E4' },
+            danger: { DEFAULT: '#D96C53' },
+            neutral: { DEFAULT: '#6B7280' }
           }
         }
       }
@@ -50,25 +52,6 @@
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #d4d4d8; }
     html.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #3f3f46; }
 
-    /* Custom Checkbox Styles */
-    .checklist-item {
-      transition: all 0.2s ease;
-    }
-    .checklist-item.checked {
-      background-color: rgba(56, 128, 90, 0.05);
-      border-color: rgba(56, 128, 90, 0.4);
-    }
-    html.dark .checklist-item.checked {
-      background-color: rgba(56, 128, 90, 0.15);
-      border-color: rgba(56, 128, 90, 0.5);
-    }
-    .checklist-item.checked span.text-content {
-      text-decoration: line-through;
-      opacity: 0.6;
-    }
-    input[type="checkbox"] {
-      accent-color: #38805A;
-    }
   </style>
 </head>
 <body class="bg-paper dark:bg-[#121212] text-ink dark:text-[#E0E0E0] transition-colors duration-500 relative overflow-x-hidden selection:bg-accent/20">
@@ -87,6 +70,13 @@
       </div>
       
       <div class="flex items-center gap-3 shrink-0">
+        <button id="btn-nav-form" onclick="returnToFormOrIntro()" class="btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b-2 border-accent text-ink dark:text-white transition-all duration-300 py-1 hidden sm:block">
+          Nova Avaliação
+        </button>
+        <button id="btn-nav-dashboard" onclick="attemptDashboardAccess()" class="btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-medium border-b-2 border-transparent text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300 py-1">
+          Painel Admin
+        </button>
+        <div class="w-[1px] h-3 bg-paper-dark dark:bg-white/10 mx-1 md:mx-2"></div>
         <button onclick="toggleTheme()" class="text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300" aria-label="Alternar Tema">
           <svg id="icon-sun" class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
           <svg id="icon-moon" class="block dark:hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
@@ -146,7 +136,7 @@
             Checklist de <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Qualidade.</span>
           </h1>
           <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi max-w-sm">
-            Marque os pontos abaixo após garantir que sua iniciativa os atende.
+            Responda cada ponto. Utilize a área de texto para pedir ajuda ou tirar dúvidas.
           </p>
         </div>
 
@@ -177,23 +167,19 @@
           <h2 id="question-title" class="text-xl md:text-2xl font-medium mb-2 text-ink dark:text-white leading-tight"></h2>
           <p id="question-intro" class="text-sm mb-5 text-ink-light dark:text-white/70 leading-relaxed"></p>
 
-          <!-- Lista de Verificação Interativa -->
-          <div id="checklist-container" class="flex flex-col gap-3 w-full mb-6">
-            <!-- Checkboxes injetados via JS -->
-          </div>
-
-          <div id="skip-container" class="mb-4 hidden">
-             <button onclick="skipStep()" class="text-[10px] uppercase tracking-widest font-bold text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white underline underline-offset-2 transition-colors">
-               Não utilizo IA nesta iniciativa (Pular)
-             </button>
+          <!-- Lista de Verificação Interativa com Botões -->
+          <div id="checklist-container" class="flex flex-col gap-4 w-full mb-6">
+            <!-- Botões injetados via JS -->
           </div>
 
           <div id="step-comment-container" class="mt-auto block transition-all duration-300 w-full">
-            <textarea id="step-comment" rows="2" class="w-full border border-paper-dark dark:border-white/20 p-3 rounded-[2px] text-xs focus:outline-none focus:border-accent resize-none transition-all bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30 custom-scrollbar" placeholder="Plano de ação ou ressalvas sobre esta etapa (opcional)..."></textarea>
+            <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Plano de Ação ou Dúvidas</label>
+            <textarea id="step-comment" rows="2" class="w-full border border-paper-dark dark:border-white/20 p-3 rounded-[2px] text-xs focus:outline-none focus:border-accent resize-none transition-all bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30 custom-scrollbar" placeholder="Tem alguma dúvida ou precisa de ajuda dos designers? Descreva aqui (nós leremos no painel)..."></textarea>
           </div>
 
           <div id="text-container" class="mt-auto hidden w-full">
-            <textarea id="feedback-text" rows="5" class="w-full border border-paper-dark dark:border-white/20 p-3 rounded-[2px] text-sm focus:outline-none focus:border-accent resize-none transition-all bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30 custom-scrollbar" placeholder="Resumo, bloqueios encontrados ou pedidos de ajuda para o time de design..."></textarea>
+            <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Mensagem Final</label>
+            <textarea id="feedback-text" rows="5" class="w-full border border-paper-dark dark:border-white/20 p-3 rounded-[2px] text-sm focus:outline-none focus:border-accent resize-none transition-all bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30 custom-scrollbar" placeholder="Resumo geral, bloqueios encontrados ou pedidos de ajuda para o time de design..."></textarea>
           </div>
         </div>
       </div>
@@ -224,7 +210,7 @@
 
     <h2 class="text-2xl md:text-3xl font-medium text-ink dark:text-white mb-3 px-2">Autoavaliação Concluída.</h2>
     <p class="text-sm text-ink-light dark:text-white/70 mb-8 px-4 max-w-lg mx-auto">
-      Parabéns pela autonomia! Você revisou todos os pontos cruciais de UX e UI. Se você não conseguiu marcar todos os requisitos ou precisa de apoio especializado para refinar a entrega, acione o time.
+      Parabéns pela autonomia! Você revisou todos os pontos cruciais de UX e UI. Suas respostas e dúvidas já foram enviadas para o painel de Design.
     </p>
     
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
@@ -232,10 +218,62 @@
         Voltar ao início
       </button>
       
-      <!-- Link placeholder: Você pode substituir o href abaixo pelo link real do seu formulário/ticket de design -->
       <a href="https://app.clickup.com/36903956/v/fm/13670m-92951" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center px-6 py-3 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
-        Solicitar Auditoria de Design →
+        Solicitar Ajuda do Design →
       </a>
+    </div>
+  </div>
+
+  <main id="view-auth" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-center min-h-[calc(100vh-60px)] hidden">
+    <div class="w-full max-w-[400px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      <div class="mb-6 border-b border-paper-dark dark:border-white/10 pb-4">
+        <h2 class="text-2xl font-medium text-ink dark:text-white mb-2">Painel Admin</h2>
+        <p class="text-xs text-ink-light dark:text-white/60 font-satoshi">Registro das análises realizadas (Senha padrão: admin).</p>
+      </div>
+      
+      <input type="password" id="admin-password" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="••••••••">
+      <p id="auth-error" class="text-[9px] text-[#E5ACA0] mt-2 hidden font-bold uppercase tracking-widest">Senha incorreta.</p>
+      
+      <button onclick="checkPassword()" class="w-full mt-6 py-3 bg-ink text-paper dark:bg-white dark:text-[#121212] text-[10px] uppercase tracking-widest font-bold hover:opacity-80 transition-opacity">Acessar Registros</button>
+    </div>
+  </main>
+
+  <div id="view-dashboard" class="max-w-[900px] w-full mx-auto px-4 md:px-6 py-8 md:py-12 animate-[fadeIn_0.5s_ease-in-out] hidden">
+    <div class="mb-8 md:mb-10 border-b border-paper-dark dark:border-white/10 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6 w-full">
+      <div class="relative w-full md:w-auto">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter text-ink dark:text-white uppercase leading-[0.9] font-satoshi break-words">
+          Registros de <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Análise.</span>
+        </h1>
+      </div>
+      <div class="text-left md:text-right shrink-0">
+        <p class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-1">Total de Auditorias</p>
+        <div class="flex items-baseline justify-start md:justify-end gap-1">
+          <h2 id="kpi-total" class="text-3xl md:text-4xl text-accent leading-none font-medium">0</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:col-span-12 bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 p-4 md:p-8 w-full shadow-sm">
+      <h3 class="text-xs font-bold uppercase tracking-widest text-ink dark:text-white mb-4 md:mb-6 border-b border-paper-dark dark:border-white/10 pb-3">Histórico de Submissões</h3>
+      <div id="history-list" class="flex flex-col gap-3 custom-scrollbar max-h-[500px] overflow-y-auto pr-1 md:pr-2 w-full">
+        <!-- Histórico injetado via JS -->
+      </div>
+    </div>
+  </div>
+
+  <div id="evaluation-modal" class="fixed inset-0 z-[100] bg-ink/60 dark:bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 md:p-6 opacity-0 transition-opacity duration-300 w-full">
+    <div class="bg-paper dark:bg-[#121212] border border-paper-dark dark:border-white/10 w-full max-w-[700px] max-h-[95vh] md:max-h-[90vh] overflow-y-auto custom-scrollbar shadow-2xl flex flex-col relative transform scale-95 transition-transform duration-300 rounded-[4px]">
+      
+      <div class="sticky top-0 bg-paper dark:bg-[#121212] border-b border-paper-dark dark:border-white/10 p-4 md:p-5 flex justify-between items-center z-10 w-full">
+        <h3 class="text-xs md:text-sm font-bold uppercase tracking-widest text-ink dark:text-white truncate pr-4 min-w-0" id="modal-title">Detalhes da Avaliação</h3>
+        <button onclick="closeModal()" class="text-ink-light hover:text-accent dark:text-white/50 dark:hover:text-white p-2 md:p-1 transition-colors shrink-0 bg-paper-dark/30 dark:bg-white/5 rounded-[4px] md:bg-transparent">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      
+      <div id="modal-content" class="p-4 md:p-6 flex flex-col gap-4 md:gap-6 w-full">
+          <!-- Injetado via JS -->
+      </div>
     </div>
   </div>
 
@@ -282,7 +320,7 @@
         title: "3. Consistência Visual", 
         intro: "Garantir que a iniciativa tenha a nossa 'cara'.",
         checklist: [
-          "Estou utilizando os botões, cores e fontes oficiais do nosso Design System.",
+          "Estou utilizando os botões, ícones e fontes oficiais do nosso Design System.",
           "A hierarquia faz sentido: o elemento mais importante da tela é o que chama mais atenção.",
           "Os espaçamentos estão consistentes e a tela 'respira' (não está amontoada)."
         ],
@@ -292,9 +330,9 @@
         key: 'q4', 
         shortTitle: "ACESSIBILIDADE", 
         title: "4. Acessibilidade e Inclusão", 
-        intro: "O produto precisa funcionar para todos.",
+        intro: "O produto precisa funcionar e estar alinhado para todos.",
         checklist: [
-          "O contraste de cores é alto o suficiente para quem tem problemas de visão.",
+          "O que foi feito está de acordo com as cores do nosso <a href='https://produtosauvp.github.io/central/design-system' target='_blank' class='text-accent underline font-bold'>Design System</a>.",
           "Os botões são grandes e fáceis de clicar na versão mobile (celular).",
           "É possível navegar pelos fluxos principais usando o teclado (Tab/Enter)."
         ],
@@ -302,28 +340,26 @@
       },
       { 
         key: 'q5', 
-        shortTitle: "ÉTICA E IA", 
-        title: "5. IA e Ética", 
-        intro: "Se o produto utiliza IA gerativa, valide os riscos envolvidos.",
+        shortTitle: "IA E DESIGN", 
+        title: "5. IA e Design", 
+        intro: "Se o produto utiliza IA gerativa, garanta o alinhamento de componentes.",
         checklist: [
-          "O usuário sabe, de forma transparente, que aquele output veio de uma IA.",
-          "O usuário possui controle e a opção de editar ou rejeitar a ação da IA.",
-          "O risco de resposta errada (alucinação) foi mitigado (ex: com avisos/disclaimers)."
+          "Os elementos gerados por IA possuem marcação visual indicando o uso de inteligência artificial.",
+          "A interface de controle (ex: refazer, curtir resposta) utiliza os botões e padrões do nosso Design System.",
+          "Disclaimers sobre alucinação e limites da IA estão legíveis e bem posicionados."
         ],
-        skippable: true,
         gifUrl: "https://media.giphy.com/media/IZY2SE2JmPgFG/giphy.gif"
       },
       { 
         key: 'q6', 
         shortTitle: "CONCLUSÃO", 
         title: "6. Parecer Final", 
-        intro: "Descreva os bloqueios encontrados ou as melhorias que você fará antes do lançamento. Se precisar do time de design, relate as dificuldades aqui.", 
+        intro: "Descreva de forma geral o que achou da implementação. Aproveite para documentar necessidades de melhoria ou chamar a atenção dos designers.", 
         isText: true, 
         gifUrl: "https://media.giphy.com/media/3oKIPnAiaCRi8INs88/giphy.gif" 
       }
     ];
 
-    // Preload Gifs
     const preloadedGifs = [];
     formQuestions.forEach(q => {
       if (q.gifUrl) {
@@ -336,14 +372,32 @@
     let currentStep = 0;
     let formData = { userName: '', projectTitle: '' };
     
-    // Estado local para armazenar quais checkboxes foram marcados
+    // Estado local para armazenar os cliques (null = não respondido, 'sim', 'nao', 'na')
     let checkedState = {};
     formQuestions.forEach((q, i) => {
         if (q.checklist) {
-            checkedState[i] = new Array(q.checklist.length).fill(false);
+            checkedState[i] = new Array(q.checklist.length).fill(null);
         }
     });
-    let skippedSteps = {};
+
+    // Base de dados local simulada
+    let submissions = [
+      {
+        id: 1,
+        date: new Date(Date.now() - 86400000).toISOString(),
+        userName: 'Maria (Produto)',
+        projectTitle: 'Nova tela de Checkout',
+        checks: {
+          q1: ['sim', 'sim', 'sim'],
+          q2: ['sim', 'nao', 'sim', 'sim'],
+          q3: ['sim', 'sim', 'sim'],
+          q4: ['sim', 'na', 'sim'],
+          q5: ['na', 'na', 'na']
+        },
+        comments: { q1: '', q2: 'Como faço para implementar o toast de erro do Design System?', q3: '', q4: '', q5: 'Preciso de ajuda, não sei como identificar a IA sem poluir a tela.', q6: 'A tela está rodando, mas precisamos revisar esses dois pontos.' },
+      }
+    ];
+    let isAuthenticated = false;
 
     function startForm() {
       const nameVal = document.getElementById('user-name').value.trim();
@@ -364,18 +418,69 @@
       renderStep();
     }
 
+    function returnToFormOrIntro() {
+      const viewSuccess = document.getElementById('view-success');
+      if (viewSuccess && !viewSuccess.classList.contains('hidden')) {
+        resetForm();
+        return;
+      }
+      if (formData && formData.userName !== '') {
+        switchView('form');
+      } else {
+        switchView('intro');
+      }
+    }
+
+    function attemptDashboardAccess() {
+      if (isAuthenticated) {
+        switchView('dashboard');
+      } else {
+        switchView('auth');
+      }
+    }
+
+    function checkPassword() {
+      const passInput = document.getElementById('admin-password');
+      const errorMsg = document.getElementById('auth-error');
+      
+      if (passInput && passInput.value === 'admin') {
+        isAuthenticated = true;
+        if (errorMsg) errorMsg.classList.add('hidden');
+        passInput.value = '';
+        switchView('dashboard');
+      } else {
+        if (errorMsg) errorMsg.classList.remove('hidden');
+      }
+    }
+
     function toggleTheme() {
       document.documentElement.classList.toggle('dark');
     }
 
     function switchView(view) {
-      const views = ['view-intro', 'view-form', 'view-success'];
+      const views = ['view-intro', 'view-form', 'view-success', 'view-auth', 'view-dashboard'];
       views.forEach(v => {
         const el = document.getElementById(v);
         if (el) el.classList.add('hidden');
       });
+      
+      const btnForm = document.getElementById('btn-nav-form');
+      const btnDash = document.getElementById('btn-nav-dashboard');
+
+      const activeClass = "btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b-2 border-accent text-ink dark:text-white transition-all duration-300 py-1 hidden sm:block";
+      const inactiveClass = "btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-medium border-b-2 border-transparent text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300 py-1 hidden sm:block";
+
       const targetView = document.getElementById(`view-${view}`);
       if (targetView) targetView.classList.remove('hidden');
+
+      if (view === 'form' || view === 'intro' || view === 'success') {
+        if (btnForm) btnForm.className = activeClass;
+        if (btnDash) btnDash.className = inactiveClass;
+      } else if (view === 'dashboard' || view === 'auth') {
+        if (btnDash) btnDash.className = activeClass;
+        if (btnForm) btnForm.className = inactiveClass;
+        if (view === 'dashboard') renderDashboard();
+      }
     }
 
     function renderStep() {
@@ -389,13 +494,8 @@
       document.getElementById('progress-bar').style.width = `${((currentStep + 1) / formQuestions.length) * 100}%`;
       
       const badge = document.getElementById('question-badge');
-      if (q.skippable) {
-        badge.innerText = `PASSO_${stepNum} • ${q.shortTitle} (CONTEXTUAL)`;
-        badge.className = "inline-block py-0.5 px-2 border border-blue-500/30 text-[9px] font-bold tracking-widest bg-blue-500/10 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400 uppercase w-max mb-3";
-      } else {
-        badge.innerText = `PASSO_${stepNum} • ${q.shortTitle}`;
-        badge.className = "inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-3";
-      }
+      badge.innerText = `PASSO_${stepNum} • ${q.shortTitle}`;
+      badge.className = "inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-3";
 
       document.getElementById('question-title').innerText = q.title;
       document.getElementById('question-intro').innerHTML = q.intro;
@@ -408,12 +508,10 @@
       const checklistContainer = document.getElementById('checklist-container');
       const textContainer = document.getElementById('text-container');
       const stepCommentContainer = document.getElementById('step-comment-container');
-      const skipContainer = document.getElementById('skip-container');
 
       if (q.isText) {
         checklistContainer.classList.add('hidden');
         stepCommentContainer.classList.add('hidden');
-        skipContainer.classList.add('hidden');
         textContainer.classList.remove('hidden');
         document.getElementById('feedback-text').value = formData[q.key] || '';
       } else {
@@ -421,24 +519,31 @@
         checklistContainer.classList.remove('hidden');
         stepCommentContainer.classList.remove('hidden');
         
-        if (q.skippable) skipContainer.classList.remove('hidden');
-        else skipContainer.classList.add('hidden');
-
         document.getElementById('step-comment').value = formData[`${q.key}_comment`] || '';
         
-        // Renderiza as opções de checklist
+        // Renderiza as opções com botões Sim, Não, N/A
         let html = '';
-        const isSkipped = skippedSteps[currentStep];
         
         q.checklist.forEach((item, index) => {
-            const isChecked = checkedState[currentStep][index] || isSkipped;
-            const checkedClass = isChecked ? 'checked' : '';
+            const val = checkedState[currentStep][index];
             
+            // Classes dinâmicas para os botões baseados no estado
+            const btnSimClass = val === 'sim' ? 'bg-[#38805A] text-white border-[#38805A]' : 'border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50 hover:border-[#38805A] hover:text-[#38805A]';
+            const btnNaoClass = val === 'nao' ? 'bg-danger text-white border-danger' : 'border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50 hover:border-danger hover:text-danger';
+            const btnNaClass = val === 'na' ? 'bg-ink text-paper dark:bg-white dark:text-ink border-ink dark:border-white' : 'border-paper-dark dark:border-white/20 text-ink-light dark:text-white/50 hover:border-ink dark:hover:border-white hover:text-ink dark:hover:text-white';
+            
+            // Container recebe cor de fundo se respondido
+            const containerClass = val !== null ? 'bg-paper-dark/20 dark:bg-white-[0.02]' : '';
+
             html += `
-            <label class="checklist-item ${checkedClass} flex items-start gap-3 p-3 border border-paper-dark dark:border-white/20 rounded-[2px] cursor-pointer hover:bg-paper-dark/30 dark:hover:bg-white/5 transition-colors w-full">
-                <input type="checkbox" ${isChecked ? 'checked' : ''} ${isSkipped ? 'disabled' : ''} class="mt-0.5 w-4 h-4 shrink-0 cursor-pointer disabled:opacity-50" onchange="toggleCheck(event, ${index})">
-                <span class="text-content text-xs md:text-sm text-ink dark:text-white/90 leading-tight select-none pt-px">${item}</span>
-            </label>
+            <div class="flex flex-col gap-3 p-4 border border-paper-dark dark:border-white/20 rounded-[4px] transition-colors w-full ${containerClass}">
+                <span class="text-content text-sm text-ink dark:text-white/90 leading-tight">${item}</span>
+                <div class="flex gap-2 mt-1">
+                    <button onclick="setCheck(${index}, 'sim')" class="flex-1 py-2 text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all ${btnSimClass}">Sim</button>
+                    <button onclick="setCheck(${index}, 'nao')" class="flex-1 py-2 text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all ${btnNaoClass}">Não</button>
+                    <button onclick="setCheck(${index}, 'na')" class="flex-1 py-2 text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all ${btnNaClass}">N/A</button>
+                </div>
+            </div>
             `;
         });
         checklistContainer.innerHTML = html;
@@ -447,17 +552,8 @@
       updateNavButtons();
     }
 
-    function toggleCheck(event, itemIndex) {
-        checkedState[currentStep][itemIndex] = event.target.checked;
-        renderStep(); // Re-renderiza para atualizar as classes CSS visuais
-    }
-
-    function skipStep() {
-        skippedSteps[currentStep] = !skippedSteps[currentStep];
-        // Se desmarcou o skip, limpa os checks também para garantir estado fresco
-        if (!skippedSteps[currentStep]) {
-            checkedState[currentStep].fill(false);
-        }
+    function setCheck(itemIndex, value) {
+        checkedState[currentStep][itemIndex] = value;
         renderStep();
     }
 
@@ -469,15 +565,12 @@
       const btnNext = document.getElementById('btn-next');
       const btnSubmit = document.getElementById('btn-submit');
 
-      // Regra de Validação: Permitir avanço se for texto, se foi pulado (IA), ou se checou TODAS as caixas.
       let isValid = false;
       if (q.isText) {
           isValid = true;
-      } else if (skippedSteps[currentStep]) {
-          isValid = true;
       } else {
-          // Verifica se todos os itens daquele passo estão true
-          isValid = checkedState[currentStep].every(val => val === true);
+          // Só permite avançar se todas as perguntas da etapa foram respondidas
+          isValid = checkedState[currentStep].every(val => val !== null);
       }
 
       btnPrev.disabled = currentStep === 0;
@@ -493,7 +586,7 @@
         btnNext.classList.remove('flex');
         btnSubmit.classList.remove('hidden');
         btnSubmit.classList.add('flex');
-        btnSubmit.disabled = false; // Passo final sempre pode enviar
+        btnSubmit.disabled = false;
       }
     }
 
@@ -511,13 +604,198 @@
       }
     }
 
+    function renderDashboard() {
+      const kpiTotal = document.getElementById('kpi-total');
+      const historyList = document.getElementById('history-list');
+
+      if (kpiTotal) kpiTotal.innerText = submissions.length;
+
+      if (historyList) {
+        if (submissions.length === 0) {
+          historyList.innerHTML = '<p class="text-xs text-ink-light dark:text-white/50 py-4">Nenhum registro encontrado.</p>';
+          return;
+        }
+
+        historyList.innerHTML = submissions.map(s => {
+          const dateObj = new Date(s.date);
+          const formattedDate = dateObj.toLocaleDateString('pt-BR') + ' às ' + dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+          
+          return `
+          <div onclick="openModal(${s.id})" class="p-4 border border-paper-dark dark:border-white/10 bg-paper dark:bg-[#121212] hover:border-accent dark:hover:border-accent cursor-pointer transition-colors flex flex-col gap-3 group w-full rounded-[4px]">
+            <div class="flex flex-col md:flex-row justify-between md:items-start gap-3 md:gap-4 w-full">
+              <div class="flex flex-col gap-1 min-w-0 flex-1 w-full">
+                <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block truncate w-full">
+                  ${formattedDate} • ${s.userName}
+                </span>
+                <span class="text-[13px] md:text-sm font-bold text-ink dark:text-white break-words w-full block line-clamp-2">
+                  ${s.projectTitle}
+                </span>
+              </div>
+              <div class="flex items-center gap-4 shrink-0 mt-2 md:mt-0">
+                <div class="flex flex-col items-start md:items-end">
+                  <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40">Relatório</span>
+                  <span class="text-xs md:text-sm font-bold text-accent uppercase tracking-widest">Acessar</span>
+                </div>
+                <div class="w-8 h-8 rounded-full flex items-center justify-center bg-paper-dark/30 dark:bg-white/5 text-ink-light dark:text-white/50 group-hover:bg-accent group-hover:text-white transition-colors shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          `;
+        }).join('');
+      }
+    }
+
+    function openModal(id) {
+      const submission = submissions.find(s => s.id === id);
+      if (!submission) return;
+
+      const modal = document.getElementById('evaluation-modal');
+      const modalContent = document.getElementById('modal-content');
+      const modalTitle = document.getElementById('modal-title');
+
+      modalTitle.innerText = `${submission.projectTitle}`;
+
+      const dateObj = new Date(submission.date);
+      const formattedDate = dateObj.toLocaleDateString('pt-BR') + ' às ' + dateObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+      let sectionsHtml = '';
+      
+      formQuestions.forEach((q, stepIndex) => {
+        if (q.isText) {
+          if (submission.comments[q.key]) {
+            sectionsHtml += `
+            <div class="mt-2 pt-4 border-t border-paper-dark dark:border-white/10 w-full">
+              <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 block mb-2">${q.title}</span>
+              <div class="bg-paper dark:bg-[#1A1A1A] p-3 md:p-4 border border-paper-dark dark:border-white/10 w-full rounded-[2px]">
+                <p class="text-[11px] md:text-sm text-ink dark:text-white/90 leading-relaxed italic whitespace-pre-wrap break-words w-full">"${submission.comments[q.key]}"</p>
+              </div>
+            </div>
+            `;
+          }
+          return;
+        }
+
+        const checks = submission.checks ? submission.checks[q.key] : null;
+        const comment = submission.comments[q.key];
+
+        let checklistHtml = '';
+        if (checks && q.checklist) {
+           checklistHtml = '<div class="flex flex-col gap-2 mt-3">';
+           q.checklist.forEach((item, idx) => {
+              const answer = checks[idx];
+              let badgeClass = 'bg-ink/10 text-ink dark:bg-white/10 dark:text-white/70 border border-ink/20 dark:border-white/20'; 
+              let answerText = 'Não resp.';
+
+              if (answer === 'sim') {
+                  badgeClass = 'bg-[#38805A]/10 text-[#38805A] border border-[#38805A]/30';
+                  answerText = 'Sim';
+              } else if (answer === 'nao') {
+                  badgeClass = 'bg-danger/10 text-danger border border-danger/30';
+                  answerText = 'Não';
+              } else if (answer === 'na') {
+                  badgeClass = 'bg-ink/10 text-ink dark:bg-white/10 dark:text-white/70 border border-ink/20 dark:border-white/20';
+                  answerText = 'N/A';
+              }
+
+              checklistHtml += `
+                <div class="flex items-start justify-between gap-3 p-2.5 border border-paper-dark dark:border-white/10 rounded-[2px] bg-paper-dark/10 dark:bg-white-[0.02]">
+                  <span class="text-[11px] md:text-xs text-ink dark:text-white/80 leading-tight flex-1" dangerouslySetInnerHTML>${item}</span>
+                  <span class="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-[2px] ${badgeClass} shrink-0">${answerText}</span>
+                </div>
+              `;
+           });
+           checklistHtml += '</div>';
+        }
+
+        let commentHtml = '';
+        if (comment) {
+            commentHtml = `
+            <div class="mt-3 bg-paper-dark/30 dark:bg-white/5 p-3 border-l-2 border-accent w-full rounded-r-[2px]">
+              <span class="text-[9px] uppercase tracking-widest font-bold text-accent dark:text-[#72A68C] block mb-1">Dúvida / Plano de Ação:</span>
+              <p class="text-[11px] md:text-xs text-ink dark:text-white/90 italic whitespace-pre-wrap break-words">"${comment}"</p>
+            </div>
+            `;
+        }
+
+        sectionsHtml += `
+        <div class="flex flex-col gap-1 pb-5 border-b border-paper-dark dark:border-white/5 last:border-0 w-full mt-2">
+          <span class="text-[10px] md:text-xs uppercase tracking-widest font-bold text-ink dark:text-white break-words whitespace-normal w-full">${q.title}</span>
+          ${checklistHtml}
+          ${commentHtml}
+        </div>
+        `;
+      });
+
+      modalContent.innerHTML = `
+        <div class="grid grid-cols-2 gap-3 md:gap-4 mb-2 bg-paper-dark/30 dark:bg-white/5 p-4 rounded-[4px] w-full">
+          <div class="min-w-0">
+            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Nome / Squad</span>
+            <span class="text-xs md:text-sm font-medium text-ink dark:text-white truncate block">${submission.userName}</span>
+          </div>
+          <div class="min-w-0">
+            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Data e Hora</span>
+            <span class="text-xs md:text-sm font-medium text-ink dark:text-white truncate block">${formattedDate}</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2 mt-2 md:mt-4 w-full">
+          ${sectionsHtml}
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.firstElementChild.classList.remove('scale-95');
+      }, 10);
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('evaluation-modal');
+      modal.classList.add('opacity-0');
+      modal.firstElementChild.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('evaluation-modal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+
     function handleSubmit() {
       const btnSubmit = document.getElementById('btn-submit');
       btnSubmit.innerHTML = 'Concluindo...';
       btnSubmit.disabled = true;
 
-      // Neste ponto, os dados poderiam ser enviados para o backend ou registrados
-      // console.log("Final Report:", formData, checkedState, skippedSteps);
+      // Salvando os checks junto da submissão 
+      const currentChecks = {};
+      formQuestions.forEach((q, i) => {
+         if(q.checklist) currentChecks[q.key] = checkedState[i];
+      });
+
+      const newSubmission = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        userName: formData.userName,
+        projectTitle: formData.projectTitle,
+        checks: currentChecks,
+        comments: {
+          q1: formData['q1_comment'] || '',
+          q2: formData['q2_comment'] || '',
+          q3: formData['q3_comment'] || '',
+          q4: formData['q4_comment'] || '',
+          q5: formData['q5_comment'] || '',
+          q6: formData['q6'] || ''
+        }
+      };
+
+      submissions.unshift(newSubmission);
 
       setTimeout(() => {
         switchView('success');
@@ -529,11 +807,10 @@
     function resetForm() {
       currentStep = 0;
       formData = { userName: '', projectTitle: '' };
-      skippedSteps = {};
       
       formQuestions.forEach((q, i) => {
           if (q.checklist) {
-              checkedState[i] = new Array(q.checklist.length).fill(false);
+              checkedState[i] = new Array(q.checklist.length).fill(null);
           }
       });
       
@@ -543,8 +820,14 @@
       switchView('intro');
     }
 
-    // Bind events para salvar texto
     window.addEventListener('DOMContentLoaded', () => {
+        const adminPassword = document.getElementById('admin-password');
+        if (adminPassword) {
+            adminPassword.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+        }
+
         document.getElementById('feedback-text').addEventListener('input', (e) => {
             const q = formQuestions[currentStep];
             if (q) formData[q.key] = e.target.value;
