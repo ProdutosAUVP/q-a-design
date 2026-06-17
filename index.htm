@@ -57,7 +57,6 @@
     .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #d4d4d8; }
     html.dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #3f3f46; }
-
   </style>
 </head>
 <body class="bg-paper dark:bg-[#121212] text-ink dark:text-[#E0E0E0] transition-colors duration-500 relative overflow-x-hidden selection:bg-accent/20">
@@ -67,7 +66,7 @@
   <nav class="sticky top-0 z-50 bg-paper/90 dark:bg-[#121212]/90 backdrop-blur-sm border-b border-paper-dark dark:border-white/10 transition-colors duration-500">
     <div class="max-w-[900px] mx-auto px-4 md:px-6 py-3 flex justify-between items-center gap-2">
       <div class="flex items-center gap-2 md:gap-3 shrink min-w-0">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 md:h-6 w-auto text-accent shrink-0"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>
+        <img src="https://raw.githubusercontent.com/ProdutosAUVP/reviewdesign/main/olho-branco%20(2).svg" alt="Olho AUVP" class="h-4 md:h-5 lg:h-6 w-auto invert dark:invert-0 opacity-90 transition-all duration-500 shrink-0" />
         <div class="flex flex-col min-w-0">
           <span class="text-[clamp(12px,3.5vw,20px)] md:text-xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-0.5 whitespace-nowrap truncate block">
             <span class="hidden md:inline">Autoavaliação de</span><span class="md:hidden">Avaliação</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Design.</span>
@@ -75,12 +74,12 @@
         </div>
       </div>
       
-      <div class="flex items-center gap-3 shrink-0">
-        <button id="btn-nav-form" onclick="returnToFormOrIntro()" class="btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b-2 border-accent text-ink dark:text-white transition-all duration-300 py-1 hidden sm:block">
-          Nova Avaliação
+      <div class="flex items-center gap-2 md:gap-3 shrink-0">
+        <button id="btn-nav-form" onclick="returnToFormOrIntro()" class="btn-nav text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b-2 border-accent text-ink dark:text-white transition-all duration-300 py-1">
+          <span class="hidden sm:inline">Nova Avaliação</span><span class="sm:hidden">Novo</span>
         </button>
-        <button id="btn-nav-dashboard" onclick="attemptDashboardAccess()" class="btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-medium border-b-2 border-transparent text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300 py-1">
-          Painel Admin
+        <button id="btn-nav-dashboard" onclick="attemptDashboardAccess()" class="btn-nav text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-widest font-medium border-b-2 border-transparent text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300 py-1">
+          <span class="hidden sm:inline">Painel Admin</span><span class="sm:hidden">Admin</span>
         </button>
         <div class="w-[1px] h-3 bg-paper-dark dark:bg-white/10 mx-1 md:mx-2"></div>
         <button onclick="toggleTheme()" class="text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300" aria-label="Alternar Tema">
@@ -96,7 +95,7 @@
     <div class="w-full max-w-[600px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-10 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
       
       <div>
-        <div class="relative">
+        <div class="relative text-center sm:text-left">
           <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
             Identificação.
           </h1>
@@ -105,8 +104,8 @@
           </p>
         </div>
 
-        <div class="w-full mt-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 relative shadow-sm">
-          <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3ZHRobHI1bWZxNHgxZzJyNm10bHY4aTQ0Z2w0cmV5bm95bjVjdmJqdyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xlA198GxRZLw1YJugx/giphy.gif" alt="Design Review" class="w-full h-40 md:h-56 object-cover grayscale-[20%] transition-transform duration-700 hover:scale-105" loading="lazy" />
+        <div class="w-full mt-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 relative shadow-sm bg-paper-dark/10 dark:bg-white/5">
+          <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnM3Zjc0ODhsdnlxbHVnYmJiYWZpeHNxZXVoajY3ZmRuMXpza3YwMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/37DjyUkbLgNpu/giphy.gif" alt="Design Review" class="w-full h-auto object-contain grayscale-[20%] transition-transform duration-700 hover:scale-105" loading="lazy" />
         </div>
 
         <div class="border-b border-paper-dark dark:border-white/10 mb-6 mt-6"></div>
@@ -114,7 +113,7 @@
 
       <div class="flex flex-col gap-6 w-full">
         <div class="w-full">
-          <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Seu Nome / Squad</label>
+          <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Seu Nome / Equipe</label>
           <input type="text" id="user-name" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="Ex: João (Marketing)">
         </div>
 
@@ -123,7 +122,12 @@
           <input type="text" id="project-title" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="Ex: Nova tela de checkout, Chatbot IA...">
         </div>
 
-        <p id="intro-error" class="text-[9px] text-[#E5ACA0] hidden font-bold uppercase tracking-widest w-full">Preencha todos os campos.</p>
+        <div class="w-full">
+          <label class="block text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/50 mb-2">Link da Iniciativa (Figma, URL, Drive)</label>
+          <input type="text" id="project-link" class="w-full border-b border-paper-dark dark:border-white/20 p-2 text-sm focus:outline-none focus:border-accent bg-transparent text-ink dark:text-white placeholder-ink-light/50 dark:placeholder-white/30" placeholder="https://...">
+        </div>
+
+        <p id="intro-error" class="text-[9px] text-[#E5ACA0] hidden font-bold uppercase tracking-widest w-full">Preencha todos os campos obrigatórios.</p>
 
         <div class="mt-2 w-full">
           <button onclick="startForm()" class="w-full justify-center px-8 py-3 bg-ink text-paper dark:bg-white dark:text-[#121212] text-[10px] uppercase tracking-widest font-bold hover:opacity-80 transition-opacity flex items-center gap-2">
@@ -139,16 +143,16 @@
     <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-paper-dark dark:border-white/10 pb-4 mb-6 gap-4 md:gap-6">
-        <div class="relative w-full md:w-auto">
+        <div class="relative w-full md:w-auto text-center md:text-left">
           <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2 md:mt-0">
             Checklist de <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#72A68C] italic font-light tracking-tight">Qualidade.</span>
           </h1>
-          <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi max-w-sm">
+          <p class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi max-w-sm mx-auto md:mx-0">
             Responda cada ponto. Utilize a área de texto para pedir ajuda ou tirar dúvidas.
           </p>
         </div>
 
-        <div class="w-full md:w-1/3 flex flex-col justify-end block">
+        <div class="w-full md:w-1/3 flex flex-col justify-end block mt-4 md:mt-0">
           <div class="flex justify-between items-end mb-2">
             <span class="text-[9px] uppercase font-bold tracking-widest text-ink-light dark:text-white/50">Progresso</span>
             <span id="step-counter" class="text-xs font-bold text-ink dark:text-white">01/06</span>
@@ -159,23 +163,25 @@
         </div>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-stretch w-full">
+      <div class="flex flex-col gap-6 md:gap-8 w-full">
         
-        <div class="md:w-1/3 flex flex-col shrink-0">
-          <div class="w-full aspect-square md:aspect-auto md:h-full bg-paper dark:bg-[#121212] border border-paper-dark dark:border-white/10 p-1.5 shadow-sm relative group overflow-hidden">
+        <!-- Header da Pergunta (GIF ao lado do texto e responsivo) -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 w-full text-center md:text-left">
+          <div class="w-full max-w-[260px] sm:max-w-[320px] md:max-w-none md:w-72 lg:w-96 shrink-0 aspect-square md:aspect-video bg-paper dark:bg-[#121212] border border-paper-dark dark:border-white/10 p-1.5 shadow-sm relative group overflow-hidden rounded-[6px] mx-auto md:mx-0">
             <img id="question-gif" src="" alt="Animação da etapa" class="w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105" loading="lazy"/>
+          </div>
+
+          <div class="flex flex-col justify-center min-w-0 flex-1 pt-2 md:pt-0 w-full items-center md:items-start">
+            <span id="question-badge" class="inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-2 md:mb-3">
+              PASSO_01
+            </span>
+            <h2 id="question-title" class="text-xl md:text-2xl font-medium mb-2 text-ink dark:text-white leading-tight"></h2>
+            <p id="question-intro" class="text-sm text-ink-light dark:text-white/70 leading-relaxed"></p>
           </div>
         </div>
 
-        <div class="md:w-2/3 flex flex-col justify-start w-full min-w-0">
-          <span id="question-badge" class="inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-3">
-            PASSO_01
-          </span>
-          
-          <h2 id="question-title" class="text-xl md:text-2xl font-medium mb-2 text-ink dark:text-white leading-tight"></h2>
-          <p id="question-intro" class="text-sm mb-5 text-ink-light dark:text-white/70 leading-relaxed"></p>
-
-          <!-- Lista de Verificação Interativa com Botões -->
+        <!-- Conteúdo / Inputs -->
+        <div class="flex flex-col w-full min-w-0">
           <div id="checklist-container" class="flex flex-col gap-4 w-full mb-6">
             <!-- Botões injetados via JS -->
           </div>
@@ -227,7 +233,6 @@
         Voltar ao início
       </button>
       
-      <!-- Link placeholder: Você pode substituir o href abaixo pelo link real do seu formulário/ticket de design -->
       <a href="https://app.clickup.com/36903956/v/fm/13670m-92951" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center px-6 py-3 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
         Solicitar Auditoria de Design →
       </a>
@@ -237,7 +242,7 @@
   <!-- VIEW AUTH -->
   <main id="view-auth" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] hidden">
     <div class="w-full max-w-[500px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-6 md:p-10 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
-      <div class="relative">
+      <div class="relative text-center sm:text-left">
         <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
           Acesso Restrito.
         </h1>
@@ -263,7 +268,7 @@
   <!-- VIEW DASHBOARD -->
   <main id="view-dashboard" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] hidden">
     <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
-      <div class="border-b border-paper-dark dark:border-white/10 pb-4 mb-6 flex justify-between items-end">
+      <div class="border-b border-paper-dark dark:border-white/10 pb-4 mb-6 flex flex-col sm:flex-row justify-between sm:items-end gap-4">
         <div>
           <h1 class="text-3xl md:text-4xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
             Painel Admin.
@@ -282,13 +287,13 @@
 
   <!-- VIEW DETAILS (Nova Tela) -->
   <main id="view-details" class="w-full px-4 py-6 md:py-10 flex flex-col items-center justify-start min-h-[calc(100vh-60px)] hidden">
-    <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-5 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
-      <div class="border-b border-paper-dark dark:border-white/10 pb-4 mb-6 flex justify-between items-start md:items-end flex-col md:flex-row gap-4">
-        <div>
+    <div class="w-full max-w-[850px] bg-white dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/5 shadow-sm p-4 md:p-8 flex flex-col animate-[fadeIn_0.4s_ease-in-out]">
+      <div class="border-b border-paper-dark dark:border-white/10 pb-4 mb-6 flex justify-between items-start md:items-end flex-col md:flex-row gap-4 w-full">
+        <div class="w-full min-w-0">
           <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase text-ink dark:text-white leading-[0.85] font-satoshi mt-2">
             Respostas.
           </h1>
-          <p id="details-subtitle" class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi">
+          <p id="details-subtitle" class="text-xs text-ink-light dark:text-white/60 font-medium mt-2 font-satoshi truncate w-full">
             Nome • Projeto
           </p>
         </div>
@@ -346,7 +351,7 @@
         title: "3. Consistência Visual", 
         intro: "Garantir que a iniciativa tenha a nossa 'cara'.",
         checklist: [
-          "Estou utilizando os botões, ícones e fontes oficiais do nosso Design System.",
+          "Estou utilizando os botões, ícones e fontes oficiais do nosso <a href='https://produtosauvp.github.io/central/design-system' target='_blank' class='text-accent underline font-bold'>Design System</a>.",
           "A hierarquia faz sentido: o elemento mais importante da tela é o que chama mais atenção.",
           "Os espaçamentos estão consistentes e a tela 'respira' (não está amontoada)."
         ],
@@ -362,7 +367,7 @@
           "Os botões são grandes e fáceis de clicar na versão mobile (celular), assim como o tamanho da fonte também está legível.",
           "É possível navegar pelos fluxos principais usando o teclado (Tab/Enter)."
         ],
-        gifUrl: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" 
+        gifUrl: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmsxeXJkdW1ldXdmaXZhdTNpdGc5ZmU2M2tnNXE1ZTVtZnlxYXgzayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/hFsWlFJwY84jm/giphy.gif" 
       },
       { 
         key: 'q5', 
@@ -371,7 +376,7 @@
         intro: "Se o produto utiliza IA gerativa, garanta o alinhamento de componentes.",
         checklist: [
           "Os elementos gerados por IA possuem marcação visual indicando o uso de inteligência artificial.",
-          "A interface de controle (ex: refazer, curtir resposta) utiliza os botões e padrões do nosso Design System.",
+          "A interface de controle (ex: refazer, curtir resposta) utiliza os botões e padrões do nosso <a href='https://produtosauvp.github.io/central/design-system' target='_blank' class='text-accent underline font-bold'>Design System</a>.",
           "Disclaimers sobre alucinação e limites da IA estão legíveis e bem posicionados."
         ],
         gifUrl: "https://media.giphy.com/media/IZY2SE2JmPgFG/giphy.gif"
@@ -382,7 +387,8 @@
         title: "6. Parecer Final", 
         intro: "Descreva de forma geral o que achou da implementação. Aproveite para documentar necessidades de melhoria ou chamar a atenção dos designers.", 
         isText: true, 
-        gifUrl: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWs5c3J2NmJiZTVzanoyNTB0ejJ2ODRxM2xmanIzaWRtOTI0OWo5eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yDcoZeiOTeLg7AD61G/giphy.gif" 
+        gifUrl: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3RjNzNzYWJoaGNkOHN6MWtwZHEyaDkweHE1N3hvbmJnMDRnd3gxYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GusNfQJKBKfqpoI1QP/giphy.gif",
+        imgClass: 'object-top'
       }
     ];
 
@@ -396,7 +402,7 @@
     });
 
     let currentStep = 0;
-    let formData = { userName: '', projectTitle: '' };
+    let formData = { userName: '', projectTitle: '', projectLink: '' };
     let skippedSteps = {};
     
     let checkedState = {};
@@ -412,6 +418,7 @@
         date: new Date(Date.now() - 86400000).toISOString(),
         userName: 'Maria (Produto)',
         projectTitle: 'Nova tela de Checkout',
+        projectLink: 'https://figma.com/example',
         result: 'Reprovado',
         percentage: 60,
         checks: {
@@ -429,9 +436,10 @@
     function startForm() {
       const nameVal = document.getElementById('user-name').value.trim();
       const projVal = document.getElementById('project-title').value.trim();
+      const linkVal = document.getElementById('project-link').value.trim();
       const errorMsg = document.getElementById('intro-error');
 
-      if (!nameVal || !projVal) {
+      if (!nameVal || !projVal || !linkVal) {
         errorMsg.classList.remove('hidden');
         return;
       }
@@ -439,6 +447,7 @@
       
       formData.userName = nameVal;
       formData.projectTitle = projVal;
+      formData.projectLink = linkVal;
 
       currentStep = 0;
       switchView('form');
@@ -494,8 +503,8 @@
       const btnForm = document.getElementById('btn-nav-form');
       const btnDash = document.getElementById('btn-nav-dashboard');
 
-      const activeClass = "btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-bold border-b-2 border-accent text-ink dark:text-white transition-all duration-300 py-1 hidden sm:block";
-      const inactiveClass = "btn-nav text-[9px] md:text-[10px] uppercase tracking-widest font-medium border-b-2 border-transparent text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300 py-1 hidden sm:block";
+      const activeClass = "btn-nav text-[8px] md:text-[10px] uppercase tracking-widest font-bold border-b-2 border-accent text-ink dark:text-white transition-all duration-300 py-1";
+      const inactiveClass = "btn-nav text-[8px] md:text-[10px] uppercase tracking-widest font-medium border-b-2 border-transparent text-ink-light hover:text-ink dark:text-white/50 dark:hover:text-white transition-all duration-300 py-1";
 
       const targetView = document.getElementById(`view-${view}`);
       if (targetView) targetView.classList.remove('hidden');
@@ -528,16 +537,16 @@
         if (sub.result === 'Reprovado') badgeColor = "bg-[#D96C53]/10 border-[#D96C53]/30 text-[#D96C53] dark:text-[#E5ACA0]";
 
         html += `
-        <div class="p-5 border border-paper-dark dark:border-white/10 rounded-[4px] bg-paper-dark/30 dark:bg-white/5 flex flex-col md:flex-row justify-between md:items-center gap-4 transition-colors hover:border-paper-dark/80 dark:hover:border-white/20">
-          <div>
-            <div class="flex flex-wrap items-center gap-2 mb-1">
+        <div class="p-4 md:p-5 border border-paper-dark dark:border-white/10 rounded-[4px] bg-paper-dark/30 dark:bg-white/5 flex flex-col md:flex-row justify-between md:items-center gap-4 transition-colors hover:border-paper-dark/80 dark:hover:border-white/20 w-full">
+          <div class="min-w-0 w-full">
+            <div class="flex flex-wrap items-center gap-2 mb-1 w-full">
               <span class="text-sm font-bold text-ink dark:text-white">${sub.userName}</span>
-              <span class="text-[9px] uppercase font-bold tracking-widest text-ink-light dark:text-white/50 bg-paper dark:bg-[#121212] px-2 py-0.5 border border-paper-dark dark:border-white/10 rounded-sm">${new Date(sub.date).toLocaleDateString()}</span>
-              <span class="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 border rounded-sm ${badgeColor}">${sub.result}</span>
+              <span class="text-[9px] uppercase font-bold tracking-widest text-ink-light dark:text-white/50 bg-paper dark:bg-[#121212] px-2 py-0.5 border border-paper-dark dark:border-white/10 rounded-sm shrink-0">${new Date(sub.date).toLocaleDateString()}</span>
+              <span class="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 border rounded-sm ${badgeColor} shrink-0">${sub.result}</span>
             </div>
-            <p class="text-xs text-ink-light dark:text-white/70">${sub.projectTitle}</p>
+            <p class="text-xs text-ink-light dark:text-white/70 truncate w-full">${sub.projectTitle}</p>
           </div>
-          <button onclick="showDetails(${sub.id})" class="text-[9px] uppercase tracking-widest font-bold text-accent dark:text-accent-light border border-accent/20 px-4 py-2 hover:bg-accent/10 transition-colors w-max shrink-0">Ver Detalhes</button>
+          <button onclick="showDetails(${sub.id})" class="text-[9px] uppercase tracking-widest font-bold text-accent dark:text-accent-light border border-accent/20 px-4 py-2 hover:bg-accent/10 transition-colors w-full md:w-max shrink-0">Ver Detalhes</button>
         </div>
         `;
       });
@@ -552,10 +561,25 @@
       document.getElementById('details-subtitle').innerText = `Enviado por ${sub.userName} • ${sub.projectTitle}`;
       
       const container = document.getElementById('details-content');
-      let html = '';
+      let html = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-2 bg-paper-dark/30 dark:bg-white/5 p-4 rounded-[4px] w-full">
+          <div class="min-w-0">
+            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Nome / Equipe</span>
+            <span class="text-xs md:text-sm font-medium text-ink dark:text-white truncate block">${sub.userName}</span>
+          </div>
+          <div class="min-w-0">
+            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Data e Hora</span>
+            <span class="text-xs md:text-sm font-medium text-ink dark:text-white truncate block">${new Date(sub.date).toLocaleDateString('pt-BR')} às ${new Date(sub.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+          <div class="min-w-0">
+            <span class="text-[9px] uppercase tracking-widest font-bold text-ink-light dark:text-white/40 block mb-1 truncate">Link</span>
+            ${sub.projectLink ? `<a href="${sub.projectLink}" target="_blank" class="text-xs md:text-sm font-medium text-accent hover:underline truncate block">Acessar Iniciativa</a>` : '<span class="text-xs md:text-sm font-medium text-ink-light dark:text-white/40 truncate block">Não informado</span>'}
+          </div>
+        </div>
+      `;
       
       formQuestions.forEach((q, i) => {
-        html += `<div class="border border-paper-dark dark:border-white/10 rounded-[4px] p-5 bg-paper dark:bg-[#121212]">`;
+        html += `<div class="border border-paper-dark dark:border-white/10 rounded-[4px] p-4 md:p-5 bg-paper dark:bg-[#121212]">`;
         html += `<h3 class="text-xs font-bold text-ink dark:text-white uppercase tracking-widest mb-4">${q.shortTitle} - ${q.title}</h3>`;
         
         if (q.checklist) {
@@ -570,10 +594,10 @@
             
             html += `
             <div class="flex items-start gap-3 py-1">
-              <div class="flex items-center justify-center shrink-0 min-w-[42px] h-5">
+              <div class="flex items-center justify-center shrink-0 min-w-[42px] h-5 mt-0.5">
                 ${badge}
               </div>
-              <span class="text-xs text-ink-light dark:text-white/80 leading-5">${item}</span>
+              <span class="text-xs text-ink-light dark:text-white/80 leading-5" dangerouslySetInnerHTML>${item}</span>
             </div>`;
           });
           html += `</div>`;
@@ -611,7 +635,7 @@
       
       const badge = document.getElementById('question-badge');
       badge.innerText = `PASSO_${stepNum} • ${q.shortTitle}`;
-      badge.className = "inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-3";
+      badge.className = "inline-block py-0.5 px-2 border border-accent/20 text-[9px] font-bold tracking-widest bg-accent/10 text-accent dark:bg-white/5 dark:text-white/70 uppercase w-max mb-2 md:mb-3";
 
       document.getElementById('question-title').innerText = q.title;
       document.getElementById('question-intro').innerHTML = q.intro;
@@ -654,10 +678,13 @@
             html += `
             <div class="flex flex-col gap-3 p-4 border border-paper-dark dark:border-white/20 rounded-[4px] transition-colors w-full ${containerClass}">
                 <span class="text-content text-sm text-ink dark:text-white/90 leading-tight">${item}</span>
-                <div class="flex gap-2 mt-1">
-                    <button onclick="setCheck(${index}, 'sim')" class="flex-1 py-2 text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all ${btnSimClass}">Sim</button>
-                    <button onclick="setCheck(${index}, 'nao')" class="flex-1 py-2 text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all ${btnNaoClass}">Não</button>
-                    <button onclick="setCheck(${index}, 'na')" class="flex-1 py-2 text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all ${btnNaClass}">N/A</button>
+                <div class="flex gap-1.5 sm:gap-2 mt-1">
+                    <button onclick="setCheck(${index}, 'sim')" class="flex-[1] py-2.5 sm:py-2 text-[9px] sm:text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all truncate px-1 ${btnSimClass}">Sim</button>
+                    <button onclick="setCheck(${index}, 'nao')" class="flex-[1] py-2.5 sm:py-2 text-[9px] sm:text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all truncate px-1 ${btnNaoClass}">Não</button>
+                    <button onclick="setCheck(${index}, 'na')" class="flex-[1.5] py-2.5 sm:py-2 text-[9px] sm:text-[10px] uppercase tracking-widest font-bold rounded-[2px] border transition-all flex items-center justify-center px-1 ${btnNaClass}">
+                        <span class="sm:hidden">N/A</span>
+                        <span class="hidden sm:inline">Não se Aplica</span>
+                    </button>
                 </div>
             </div>
             `;
@@ -690,6 +717,9 @@
       const btnSubmit = document.getElementById('btn-submit');
 
       let isValid = true;
+      if (!q.isText) {
+          isValid = checkedState[currentStep].every(val => val !== null);
+      }
 
       btnPrev.disabled = currentStep === 0;
 
@@ -763,25 +793,25 @@
       if (naPercentage >= 0.5) {
           finalResultStr = 'Pendências';
           resultGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN0cHJsbjc3Z3d6anV2eGZwYzQzZmQ5c2k3cXU2d3RmZzl4ZWI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRPBhd3vscg5Fxx1DQ/giphy.gif"; 
-          resultTitle.innerText = "Projeto com Pendências.";
+          resultTitle.innerText = "Recomendação de Revisão.";
           resultTitle.className = "text-2xl md:text-3xl font-medium text-[#B45309] mb-3 px-2";
-          resultDesc.innerHTML = `Detectamos que metade ou mais dos critérios foram marcados como "N/A". Isso indica que a iniciativa possui pendências de definição ou escopo que precisam ser melhor especificadas antes de seguirmos com uma auditoria oficial de design.`;
+          resultDesc.innerHTML = `Detectamos que grande parte da avaliação não se aplica à sua iniciativa. Recomendamos que você revise o projeto ou solicite uma auditoria de escopo com o time de design abaixo.`;
       } 
       // Se tiver alta conformidade técnica (80% ou mais) -> Projeto Aprovado
       else if (isApproved) {
           finalResultStr = 'Aprovado';
-          resultGif.src = "https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif"; 
-          resultTitle.innerText = "Projeto Aprovado!";
+          resultGif.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmpvODk1a2h5YWQwNzMwOXFheTluamw5am5uMmttOW5qeGc3MzNvOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ql6WCH22Grmpi/giphy.gif"; 
+          resultTitle.innerText = "Alinhamento Excelente!";
           resultTitle.className = "text-2xl md:text-3xl font-medium text-[#38805A] mb-3 px-2";
-          resultDesc.innerHTML = `Parabéns! A sua iniciativa demonstra um excelente alinhamento com os nossos padrões de qualidade. O projeto está maduro e pronto para seguir em frente.`;
+          resultDesc.innerHTML = `Parabéns! A sua iniciativa demonstra um alto nível de qualidade técnica. Caso ainda possua alguma dúvida residual, você pode solicitar a auditoria de design abaixo.`;
       } 
       // Se não atingir o limiar técnico devido a marcações "Não" ou itens em branco -> Projeto Reprovado
       else {
           finalResultStr = 'Reprovado';
           resultGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN0cHJsbjc3Z3d6anV2eGZwYzQzZmQ5c2k3cXU2d3RmZzl4ZWI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRPBhd3vscg5Fxx1DQ/giphy.gif"; 
-          resultTitle.innerText = "Projeto Reprovado.";
+          resultTitle.innerText = "Recomendação de Revisão.";
           resultTitle.className = "text-2xl md:text-3xl font-medium text-[#D96C53] mb-3 px-2";
-          resultDesc.innerHTML = `A sua iniciativa não atingiu os requisitos mínimos exigidos de design e/ou usabilidade devidas. Revise seu projeto e os pontos em aberto. Caso haja dúvidas entre em contato com um dos designers.`;
+          resultDesc.innerHTML = `A sua iniciativa possui pontos críticos que não atendem aos nossos requisitos. Recomendamos que revise o projeto, mas a opção de enviar para a auditoria de design continua disponível abaixo.`;
       }
 
       // Adicionando a submissão para o Painel Admin
@@ -790,6 +820,7 @@
         date: new Date().toISOString(),
         userName: formData.userName,
         projectTitle: formData.projectTitle,
+        projectLink: formData.projectLink,
         result: finalResultStr,
         percentage: percentage,
         checks: {},
@@ -818,7 +849,7 @@
 
     function resetForm() {
       currentStep = 0;
-      formData = { userName: '', projectTitle: '' };
+      formData = { userName: '', projectTitle: '', projectLink: '' };
       skippedSteps = {};
       
       formQuestions.forEach((q, i) => {
@@ -829,6 +860,7 @@
       
       document.getElementById('user-name').value = '';
       document.getElementById('project-title').value = '';
+      document.getElementById('project-link').value = '';
       
       switchView('intro');
     }
