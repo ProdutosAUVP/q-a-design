@@ -60,7 +60,7 @@
 
     /* WIDGET DE ACESSO RÁPIDO */
     :root {
-      --float-bottom-pos: 40px; /* Ajustado para equilibrar no canto inferior direito */
+      --float-bottom-pos: 40px; 
       --float-right-pos: 40px;
       --float-size: 60px;
     }
@@ -288,23 +288,44 @@
   </main>
 
   <!-- VIEW SUCCESS -->
-  <div id="view-success" class="max-w-[700px] mx-auto mt-10 md:mt-16 px-4 md:px-6 animate-[fadeIn_0.5s_ease-in-out] hidden text-center w-full">
+  <div id="view-success" class="max-w-[700px] mx-auto mt-10 md:mt-16 px-4 md:px-6 animate-[fadeIn_0.5s_ease-in-out] hidden text-center w-full pb-10">
     
     <div class="w-full max-w-[250px] md:max-w-[300px] mx-auto mb-6 rounded-[4px] overflow-hidden border border-paper-dark dark:border-white/10 shadow-sm">
       <img id="result-gif" src="https://media.giphy.com/media/26FLgGTPUDH6UGAbm/giphy.gif" alt="Resultado" class="w-full h-auto object-cover grayscale-[20%]" loading="lazy" />
     </div>
 
     <h2 id="result-title" class="text-2xl md:text-3xl font-medium text-ink dark:text-white mb-3 px-2">Autoavaliação Concluída.</h2>
-    <p id="result-desc" class="text-sm text-ink-light dark:text-white/70 mb-8 px-4 max-w-lg mx-auto">
+    <p id="result-desc" class="text-sm text-ink-light dark:text-white/70 px-4 max-w-lg mx-auto">
       Calculando seu resultado...
     </p>
+
+    <!-- NOVA SEÇÃO DE RESUMO PARA AUDITORIA -->
+    <div class="w-full bg-paper dark:bg-[#1A1A1A] border border-paper-dark dark:border-white/10 rounded-[4px] p-5 md:p-6 text-left relative mt-8 mb-8 shadow-sm">
+      <h3 class="text-xs md:text-sm font-bold uppercase tracking-widest text-ink dark:text-white mb-2 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+        Resumo da Avaliação
+      </h3>
+      <p class="text-xs text-ink-light dark:text-white/70 mb-4 leading-relaxed">
+        Se você precisar solicitar uma auditoria do time de design, copie o texto abaixo e cole na <strong>descrição do card da tarefa</strong>. O título da sua demanda deve ser criado estritamente no formato: <br>
+        <span class="inline-block mt-2 font-mono bg-paper-dark/50 dark:bg-white/10 text-ink dark:text-white px-2 py-1 rounded-[2px] border border-paper-dark dark:border-white/20 select-all">[AUDITORIA] <span id="summary-demand-name">Nome da demanda</span></span>
+      </p>
+      
+      <div class="relative group">
+        <textarea id="summary-output" readonly class="w-full h-64 bg-paper-dark/30 dark:bg-[#121212] border border-paper-dark dark:border-white/10 rounded-[2px] p-3 text-xs text-ink-light dark:text-white/70 font-mono resize-none focus:outline-none custom-scrollbar focus:border-accent dark:focus:border-accent transition-colors"></textarea>
+        <button onclick="copySummary()" class="absolute top-2 right-2 bg-white dark:bg-[#2A2A2A] border border-paper-dark dark:border-white/20 p-2 rounded-[2px] hover:bg-paper-dark dark:hover:bg-white/10 transition-colors flex items-center justify-center group/btn" aria-label="Copiar Resumo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-light dark:text-white/60 group-hover/btn:text-accent"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copy-tooltip" class="absolute -top-8 right-0 bg-ink text-paper dark:bg-white dark:text-ink text-[9px] uppercase font-bold px-2 py-1 rounded opacity-0 transition-opacity whitespace-nowrap">Copiar</span>
+        </button>
+      </div>
+    </div>
+    <!-- FIM DA SEÇÃO -->
     
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4">
       <button onclick="resetForm()" class="w-full sm:w-auto justify-center px-6 py-3 border border-paper-dark dark:border-white/20 text-ink dark:text-white text-[10px] uppercase tracking-widest font-bold hover:border-ink dark:hover:border-white transition-colors">
         Voltar ao início
       </button>
       
-      <a href="https://app.clickup.com/36903956/v/fm/13670m-92951" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center px-6 py-3 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
+      <a href="https://forms.clickup.com/36903956/f/13670m-92951/4D930BQ9H63ASARNP3" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto justify-center px-6 py-3 bg-accent text-white text-[10px] uppercase tracking-widest font-bold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
         Solicitar Auditoria de Design →
       </a>
     </div>
@@ -385,7 +406,7 @@
       
       <!-- Seção 1: Central de Produto (Link Principal) -->
       <div class="px-4 py-3 border-b border-paper-dark dark:border-white/10">
-        <a href="#" target="_blank" class="text-sm font-bold text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group w-full">
+        <a href="https://produtosauvp.github.io/central/" target="_blank" class="text-sm font-bold text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group w-full">
           <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
             Central de Produto
@@ -397,14 +418,14 @@
       <!-- Seção 2: Formulários -->
       <div class="px-4 py-3 border-b border-paper-dark dark:border-white/10">
         <div class="flex flex-col gap-1.5">
-          <a href="#" target="_blank" class="text-sm font-medium text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group">
+          <a href="https://forms.clickup.com/36903956/f/13670m-92951/4D930BQ9H63ASARNP3" target="_blank" class="text-sm font-medium text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group">
             <div class="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
               Abra uma solicitação
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-0 group-hover:opacity-100 transition-opacity"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
-          <a href="#" target="_blank" class="text-sm font-medium text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group">
+          <a href="https://produtosauvp.github.io/reviewdesign" target="_blank" class="text-sm font-medium text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group">
             <div class="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               Avalie um Designer
@@ -424,7 +445,7 @@
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50 group-hover:opacity-100 transition-opacity"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           </a>
-          <a href="#" target="_blank" class="text-sm font-medium text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group">
+          <a href="https://produtosauvp.github.io/central/tom-e-voz" target="_blank" class="text-sm font-medium text-ink dark:text-white hover:text-accent dark:hover:text-accent-light transition-colors py-1 flex items-center justify-between group">
             <div class="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
               Manual de Tom e Voz
@@ -454,6 +475,11 @@
   </div>
 
   <script>
+    // ==========================================
+    // URL GERADA NO PASSO 4 DO APPS SCRIPT
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxvUsHPYMkEMNV6hmjQvB3Wqw72Tsn6orfxCVwoRgKWbsz3HH_T0WyFUoVdrL-gPA2OXQ/exec';
+    // ==========================================
+
     function applySystemTheme() {
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.documentElement.classList.add('dark');
@@ -557,25 +583,8 @@
         }
     });
 
-    let submissions = [
-      {
-        id: 1,
-        date: new Date(Date.now() - 86400000).toISOString(),
-        userName: 'Maria (Produto)',
-        projectTitle: 'Nova tela de Checkout',
-        projectLink: 'https://figma.com/example',
-        result: 'Reprovado',
-        percentage: 60,
-        checks: {
-          q1: ['sim', 'sim', 'sim'],
-          q2: ['sim', 'nao', 'sim', 'sim'],
-          q3: ['sim', 'sim', 'sim'],
-          q4: ['sim', 'na', 'sim'],
-          q5: ['na', 'na', 'na']
-        },
-        comments: { q1: '', q2: 'Como faço para implementar o toast de erro do Design System?', q3: '', q4: '', q5: 'Preciso de ajuda, não sei como identificar a IA sem poluir a tela.', q6: 'A tela está rodando, mas precisamos revisar esses dois pontos.' },
-      }
-    ];
+    // Inicia vazio, será populado via Google Sheets (ou local temporário após o envio)
+    let submissions = [];
     let isAuthenticated = false;
 
     function startForm() {
@@ -620,6 +629,27 @@
       }
     }
 
+    // Traz os dados reais da planilha ao logar no dashboard
+    async function loadDashboardData() {
+      const container = document.getElementById('dashboard-content');
+      if (container) {
+        container.innerHTML = '<p class="text-sm text-ink-light dark:text-white/50 animate-pulse w-full text-center py-8">Sincronizando com a base de dados...</p>';
+      }
+      
+      if (GOOGLE_SHEET_URL !== 'COLE_AQUI_A_URL_DO_WEB_APP') {
+        try {
+          const response = await fetch(GOOGLE_SHEET_URL);
+          const data = await response.json();
+          if (Array.isArray(data)) {
+            submissions = data.reverse(); // Os mais recentes primeiro
+          }
+        } catch (err) {
+          console.error("Erro ao puxar dados da planilha:", err);
+        }
+      }
+      renderDashboard();
+    }
+
     function checkPassword() {
       const passInput = document.getElementById('admin-password');
       const errorMsg = document.getElementById('auth-error');
@@ -629,6 +659,7 @@
         if (errorMsg) errorMsg.classList.add('hidden');
         passInput.value = '';
         switchView('dashboard');
+        loadDashboardData(); // Executa o Load ao confirmar a senha
       } else {
         if (errorMsg) errorMsg.classList.remove('hidden');
       }
@@ -660,17 +691,18 @@
       } else if (view === 'dashboard' || view === 'auth' || view === 'details') {
         if (btnDash) btnDash.className = activeClass;
         if (btnForm) btnForm.className = inactiveClass;
-        if (view === 'dashboard') renderDashboard();
+        if (view === 'dashboard') {
+          renderDashboard();
+        }
       }
     }
 
-    // Função que mostra a lista do painel
     function renderDashboard() {
       const container = document.getElementById('dashboard-content');
       if (!container) return;
       
       if (submissions.length === 0) {
-        container.innerHTML = '<p class="text-sm text-ink-light dark:text-white/50">Nenhuma avaliação encontrada.</p>';
+        container.innerHTML = '<p class="text-sm text-ink-light dark:text-white/50 py-4 w-full text-center">Nenhuma avaliação encontrada.</p>';
         return;
       }
 
@@ -698,7 +730,6 @@
       container.innerHTML = html;
     }
 
-    // Função Nova para mostrar detalhes da avaliação
     function showDetails(id) {
       const sub = submissions.find(s => s.id === id);
       if (!sub) return;
@@ -790,7 +821,6 @@
           qGif.setAttribute('src', q.gifUrl);
       }
 
-      // Aplica a classe de alinhamento customizada ou centraliza por padrão
       qGif.className = `w-full h-full object-cover grayscale-[20%] transition-transform duration-700 group-hover:scale-105 ${q.imgClass || 'object-center'}`;
 
       const checklistContainer = document.getElementById('checklist-container');
@@ -897,7 +927,6 @@
       }
     }
 
-    // Salvar Dados e exibir resultado final com diferenciação lógica
     function handleSubmit() {
       const btnSubmit = document.getElementById('btn-submit');
       btnSubmit.innerHTML = 'Concluindo...';
@@ -934,7 +963,6 @@
       const resultTitle = document.getElementById('result-title');
       const resultDesc = document.getElementById('result-desc');
 
-      // Se 50% ou mais dos itens forem marcados como N/A -> Projeto com Pendências (escopo/definição indefinida)
       if (naPercentage >= 0.5) {
           finalResultStr = 'Pendências';
           resultGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN0cHJsbjc3Z3d6anV2eGZwYzQzZmQ5c2k3cXU2d3RmZzl4ZWI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRPBhd3vscg5Fxx1DQ/giphy.gif"; 
@@ -942,7 +970,6 @@
           resultTitle.className = "text-2xl md:text-3xl font-medium text-[#B45309] mb-3 px-2";
           resultDesc.innerHTML = `Detectamos que grande parte da avaliação não se aplica à sua iniciativa. Recomendamos que você revise o projeto ou solicite uma auditoria de escopo com o time de design abaixo.`;
       } 
-      // Se tiver alta conformidade técnica (80% ou mais) -> Projeto Aprovado
       else if (isApproved) {
           finalResultStr = 'Aprovado';
           resultGif.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmpvODk1a2h5YWQwNzMwOXFheTluamw5am5uMmttOW5qeGc3MzNvOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ql6WCH22Grmpi/giphy.gif"; 
@@ -950,7 +977,6 @@
           resultTitle.className = "text-2xl md:text-3xl font-medium text-[#38805A] mb-3 px-2";
           resultDesc.innerHTML = `Parabéns! A sua iniciativa demonstra um alto nível de qualidade técnica. Caso ainda possua alguma dúvida residual, você pode solicitar a auditoria de design abaixo.`;
       } 
-      // Se não atingir o limiar técnico devido a marcações "Não" ou itens em branco -> Projeto Reprovado
       else {
           finalResultStr = 'Reprovado';
           resultGif.src = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWN0cHJsbjc3Z3d6anV2eGZwYzQzZmQ5c2k3cXU2d3RmZzl4ZWI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YRPBhd3vscg5Fxx1DQ/giphy.gif"; 
@@ -959,7 +985,53 @@
           resultDesc.innerHTML = `A sua iniciativa possui pontos críticos que não atendem aos nossos requisitos. Recomendamos que revise o projeto, mas a opção de enviar para a auditoria de design continua disponível abaixo.`;
       }
 
-      // Adicionando a submissão para o Painel Admin
+      // ----------------------------------------------------
+      // GERAÇÃO DO RESUMO PARA A ÁREA DE TEXTO
+      // ----------------------------------------------------
+      const summaryDemandName = document.getElementById('summary-demand-name');
+      if(summaryDemandName) {
+        summaryDemandName.innerText = formData.projectTitle;
+      }
+
+      let summaryText = `[AUTOAVALIAÇÃO DE DESIGN]\n`;
+      summaryText += `Avaliador(a): ${formData.userName}\n`;
+      summaryText += `Iniciativa: ${formData.projectTitle}\n`;
+      summaryText += `Link: ${formData.projectLink || 'Não informado'}\n`;
+      summaryText += `Status Prévio: ${finalResultStr}\n\n`;
+      
+      summaryText += `[DETALHAMENTO DA AVALIAÇÃO]\n`;
+      
+      formQuestions.forEach((q, i) => {
+          summaryText += `\n# ${q.shortTitle} - ${q.title}\n`;
+          
+          if (q.checklist) {
+              q.checklist.forEach((item, idx) => {
+                  let ans = checkedState[i][idx];
+                  let ansText = ans === 'sim' ? 'SIM' : ans === 'nao' ? 'NÃO' : ans === 'na' ? 'N/A' : 'N/R';
+                  // Remove tags HTML do texto do checklist para não quebrar a formatação em texto puro
+                  let cleanItemText = item.replace(/<[^>]*>?/gm, ''); 
+                  summaryText += `[${ansText}] ${cleanItemText}\n`;
+              });
+          }
+          
+          let comment = '';
+          if (q.isText) {
+             comment = formData[q.key];
+          } else {
+             comment = formData[`${q.key}_comment`];
+          }
+          
+          if (comment && comment.trim() !== '') {
+              summaryText += `>> Comentário/Plano de Ação:\n   "${comment.trim()}"\n`;
+          }
+      });
+
+      const summaryOutput = document.getElementById('summary-output');
+      if (summaryOutput) {
+          summaryOutput.value = summaryText;
+      }
+      // ----------------------------------------------------
+
       const newSubmission = {
         id: Date.now(),
         date: new Date().toISOString(),
@@ -984,6 +1056,17 @@
       });
       
       submissions.unshift(newSubmission);
+      
+      // Envia para a planilha 
+      if (GOOGLE_SHEET_URL !== 'COLE_AQUI_A_URL_DO_WEB_APP') {
+        fetch(GOOGLE_SHEET_URL, {
+          method: 'POST',
+          body: JSON.stringify(newSubmission),
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+        })
+        .then(res => console.log('Salvo no Google Sheets com sucesso!'))
+        .catch(err => console.error('Erro ao salvar na planilha:', err));
+      }
 
       setTimeout(() => {
         switchView('success');
@@ -1010,6 +1093,23 @@
       switchView('intro');
     }
 
+    // --- FUNÇÃO PARA COPIAR O RESUMO ---
+    function copySummary() {
+      const textarea = document.getElementById('summary-output');
+      textarea.select();
+      document.execCommand('copy');
+      
+      const tooltip = document.getElementById('copy-tooltip');
+      if (tooltip) {
+        tooltip.innerText = "Copiado!";
+        tooltip.classList.remove('opacity-0');
+        setTimeout(() => {
+          tooltip.classList.add('opacity-0');
+          setTimeout(() => tooltip.innerText = "Copiar", 300);
+        }, 2000);
+      }
+    }
+
     // --- FUNÇÕES DO WIDGET DE ACESSO RÁPIDO ---
     function toggleQuickAccess(event) {
       if(event) event.stopPropagation();
@@ -1030,7 +1130,6 @@
       }
     }
 
-    // Fecha o menu do widget ao clicar fora
     document.addEventListener('click', function(event) {
       const widget = document.getElementById('widget-container');
       if (widget && !widget.contains(event.target)) {
@@ -1039,7 +1138,6 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-        // Esconde a tooltip do widget após 4 segundos, mas mantém ela aparecendo no hover
         setTimeout(() => {
           const tooltip = document.getElementById('widget-tooltip');
           if (tooltip) {
